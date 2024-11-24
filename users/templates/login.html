@@ -1,0 +1,32 @@
+<h2>ورود</h2>
+<form method="post">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+    <div>
+        {{ form.non_field_errors }}
+    </div>
+    {% endif %}
+
+    <div>
+        <label for="id_username">نام کاربری:</label>
+        {{ form.username }}
+        {% if form.username.errors %}
+        <div>
+            {{ form.username.errors }}
+        </div>
+        {% endif %}
+    </div>
+
+    <div>
+        <label for="id_password">رمز عبور:</label>
+        {{ form.password }}
+        {% if form.password.errors %}
+        <div>
+            {{ form.password.errors }}
+        </div>
+        {% endif %}
+    </div>
+
+    <button type="submit">ورود</button>
+</form>
