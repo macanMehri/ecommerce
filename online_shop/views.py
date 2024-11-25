@@ -93,3 +93,9 @@ def purchase_basket_view(request):
     return render(
         request, 'purchase_basket.html', {'purchases_to_do': purchases_to_do}
     )
+
+
+def a_product_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    return render(request, 'a_product.html', {'product': product})

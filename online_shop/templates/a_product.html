@@ -1,0 +1,26 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <h2>Product</h2>
+    <ul>
+        <li>
+            {{product.title}}
+        </li>
+        <li>
+            {{product.price}}
+        </li>
+        <li>
+            {{product.category}}
+        </li>
+        <li>
+            {{product.insurance}}
+        </li>
+        <li>
+            {{product.image}}
+        </li>
+        <li>
+            {{product.description}}
+        </li>
+    </ul>
+    <a href="{% url 'products' category_id=product.category.id %}">Back to products</a>
+{% endblock %}
