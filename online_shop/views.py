@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category
-from .forms import ProductForm
+from .forms import ProductForm, CategoryForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -37,4 +37,22 @@ def add_product_view(request):
     print("You do not have permission to delete this menu item.")
     return redirect('categories')
 
+
+@login_required
+def add_category_view(request):
+    if request.user.is_staff:
+
+        if request.method == 'POST':
+            form = CategoryForm(request.POST)
+            if form.is_valid():
+                category = form.save(commit=False)
+                category.is_active = True
+                category.save()
+                return redirect('categories')
+        else:
+            form = CategoryForm()
+
+        return render(request, 'add_category.html', {'form': form})
+
+    return redirect('categories')
 
