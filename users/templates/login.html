@@ -1,4 +1,4 @@
-<h2>ورود</h2>
+<h2>Login</h2>
 <form method="post">
     {% csrf_token %}
 
@@ -9,7 +9,7 @@
     {% endif %}
 
     <div>
-        <label for="id_username">نام کاربری:</label>
+        <label for="id_username">username: </label>
         {{ form.username }}
         {% if form.username.errors %}
         <div>
@@ -19,7 +19,7 @@
     </div>
 
     <div>
-        <label for="id_password">رمز عبور:</label>
+        <label for="id_password">password: </label>
         {{ form.password }}
         {% if form.password.errors %}
         <div>
@@ -28,5 +28,5 @@
         {% endif %}
     </div>
 
-    <button type="submit">ورود</button>
+    <button type="submit">Login</button>
 </form>
