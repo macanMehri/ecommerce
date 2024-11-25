@@ -1,0 +1,13 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <h2>My Basket</h2>
+    <ul>
+        {% for purchase_to_do in purchases_to_do %}
+            <li>
+                <a href="{% url 'categories' %}">{{ purchase_to_do.product }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'categories' %}">Back to categories</a>
+{% endblock %}

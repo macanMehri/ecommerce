@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Category, Insurance
+from .models import Product, Category, Insurance, PurchaseBasket
 from .forms import ProductForm, CategoryForm, InsuranceForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 def category_view(request):
@@ -83,3 +84,12 @@ def add_insurance_view(request):
         return render(request, 'add_insurance.html', {'form': form})
     else:
         redirect('insurances')
+
+
+@login_required
+def purchase_basket_view(request):
+    purchases_to_do = PurchaseBasket.objects.filter(user=request.user, is_completed=False)
+
+    return render(
+        request, 'purchase_basket.html', {'purchases_to_do': purchases_to_do}
+    )
