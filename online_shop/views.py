@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Category
-from .forms import ProductForm, CategoryForm
+from .models import Product, Category, Insurance
+from .forms import ProductForm, CategoryForm, InsuranceForm
 from django.contrib.auth.decorators import login_required
 
 
@@ -14,6 +14,15 @@ def product_view(request, category_id):
     products = Product.objects.filter(is_active=True, category__id=category_id)
 
     return render(request, 'products.html', {'products': products})
+
+
+@login_required
+def insurances_view(request):
+    if request.user.is_staff:
+        insurances = Insurance.objects.filter(is_active=True)
+        return render(request, 'insurances.html', {'insurances': insurances})
+    else:
+        redirect('categories')
 
 
 @login_required
@@ -56,3 +65,21 @@ def add_category_view(request):
 
     return redirect('categories')
 
+
+@login_required
+def add_insurance_view(request):
+    if request.user.is_staff:
+
+        if request.method == 'POST':
+            form = InsuranceForm(request.POST)
+            if form.is_valid():
+                insurance = form.save(commit=False)
+                insurance.is_active = True
+                insurance.save()
+                return redirect('insurances')
+        else:
+            form = InsuranceForm()
+
+        return render(request, 'add_insurance.html', {'form': form})
+    else:
+        redirect('insurances')

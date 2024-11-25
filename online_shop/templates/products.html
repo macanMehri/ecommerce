@@ -2,7 +2,9 @@
 
 {% block content %}
     <h2>Products</h2>
-
+        {% if user.is_staff %}
+            <a href="{% url 'add_product' %}">Add new product</a><br>
+        {% endif %}
     <ul>
         {% for product in products %}
             <li>
