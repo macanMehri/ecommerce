@@ -1,19 +1,14 @@
-<h2>Products</h2>
+{% extends "master.html" %}
 
-<div>
-    {% if user.is_authenticated %}
+{% block content %}
+    <h2>Products</h2>
 
-    {% else %}
-        <a href="{% url 'login' %}" class="login-button">Login</a>
-        <a href="{% url 'signup' %}" class="signup-button">Sign up</a>
-    {% endif %}
-</div>
-
-<ul>
-    {% for product in products %}
-        <li>
-            <a href="{% url 'categories' %}">{{ product.title }}</a>
-        </li>
-    {% endfor %}
-</ul>
-<a href="{% url 'categories' %}">Back to categories</a>
+    <ul>
+        {% for product in products %}
+            <li>
+                <a href="{% url 'categories' %}">{{ product.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'categories' %}">Back to categories</a>
+{% endblock %}

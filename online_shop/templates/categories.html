@@ -1,22 +1,14 @@
-<h2>Categories</h2>
+{% extends "master.html" %}
 
-<div>
-    {% if user.is_authenticated %}
-        <a href="{% url 'logout' %} ">Logout</a><br>
-        {% if user.is_staff %}
-            <a href="{% url 'add_product' %}">Add new product</a><br>
-            <a href="{% url 'add_category' %}">Add new category</a><br>
-        {% endif %}
-    {% else %}
-        <a href="{% url 'login' %}" class="login-button">Login</a><br>
-        <a href="{% url 'signup' %}" class="signup-button">Sign up</a><br>
-    {% endif %}
-</div>
 
-<ul>
-    {% for category in categories %}
-        <li>
-            <a href="{% url 'products' category_id=category.id %}">{{ category.title }}</a>
-        </li>
-    {% endfor %}
-</ul>
+{% block content %}
+
+    <h2>Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'products' category_id=category.id %}">{{ category.title }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
