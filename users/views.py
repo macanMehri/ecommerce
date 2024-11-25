@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm, SignUpForm
 from django.contrib.auth import authenticate, login
+from online_shop import templates
+from django.contrib import messages
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        messages.error(request, "You are already logged in!")
+        return redirect('categories')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
