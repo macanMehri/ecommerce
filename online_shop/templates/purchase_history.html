@@ -1,0 +1,17 @@
+{% extends "master.html" %}
+
+{% block content %}
+    <h2>My Purchase History</h2>
+    <ul>
+        {% for purchase_history in purchases_history %}
+            <li>
+                <a href="{% url 'a_product' product_id=purchase_history.product.id %}">{{ purchase_history.product }}</a>
+                <span>Count: {{ purchase_history.count }}</span>
+                <span>Cost: {{ purchase_history.product.price }}</span>
+                <span>Total Cost: {{ purchase_history.total_price }}</span>
+            </li>
+        {% endfor %}
+    </ul>
+    <span>Total: {{ total }}</span><br>
+    <a href="{% url 'categories' %}">Back to categories</a>
+{% endblock %}

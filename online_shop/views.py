@@ -6,6 +6,13 @@ from django.contrib.auth.models import User
 from django.db.models import F
 
 
+def calculate_total(purchases) -> float:
+    total = 0
+    for purchase in purchases:
+        total += purchase.total_price
+    return total
+
+
 def category_view(request):
     categories = Category.objects.filter(is_active=True)
 
@@ -91,8 +98,25 @@ def add_insurance_view(request):
 def purchase_basket_view(request):
     purchases_to_do = PurchaseBasket.objects.filter(user=request.user, is_completed=False)
 
+    total = calculate_total(purchases=purchases_to_do)
+
     return render(
-        request, 'purchase_basket.html', {'purchases_to_do': purchases_to_do}
+        request, 'purchase_basket.html', {
+            'purchases_to_do': purchases_to_do, 'total': total
+        }
+    )
+
+
+@login_required
+def purchase_history_view(request):
+    purchases_history = PurchaseBasket.objects.filter(user=request.user, is_completed=True)
+
+    total = calculate_total(purchases=purchases_history)
+
+    return render(
+        request, 'purchase_history.html', {
+            'purchases_history': purchases_history, 'total': total
+        }
     )
 
 

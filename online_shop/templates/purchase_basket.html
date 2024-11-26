@@ -7,6 +7,8 @@
             <li>
                 <a href="{% url 'a_product' product_id=purchase_to_do.product.id %}">{{ purchase_to_do.product }}</a>
                 <span>Count: {{ purchase_to_do.count }}</span>
+                <span>Cost: {{ purchase_to_do.product.price }}</span>
+                <span>Total Cost: {{ purchase_to_do.total_price }}</span>
                 <div class="quantity-buttons">
                     <!-- Button to increase the count -->
                     <form method="post" action="{% url 'increment_purchase' purchase_id=purchase_to_do.id %}">
@@ -22,5 +24,7 @@
             </li>
         {% endfor %}
     </ul>
+    <span>Total: {{ total }}</span><br>
+    <a href="{% url 'purchase_history' %}">Last purchases</a>
     <a href="{% url 'categories' %}">Back to categories</a>
 {% endblock %}

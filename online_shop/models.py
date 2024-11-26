@@ -77,3 +77,7 @@ class PurchaseBasket(BaseModel):
 
     def __str__(self):
         return f'{self.product}'
+
+    @property
+    def total_price(self):
+        return self.product.price * self.count

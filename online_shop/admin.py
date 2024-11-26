@@ -93,6 +93,7 @@ class AdminPurchaseBasket(BaseAdmin):
         'user',
         'product',
         'count',
+        'total_price',
         'is_completed',
         'is_active',
         'created_date',
