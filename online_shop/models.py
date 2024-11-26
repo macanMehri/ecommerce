@@ -68,6 +68,7 @@ class Product(BaseModel):
 class PurchaseBasket(BaseModel):
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Product')
+    count = models.IntegerField(default=1, verbose_name='Count')
     is_completed = models.BooleanField(default=False, verbose_name='Is completed')
 
     class Meta:

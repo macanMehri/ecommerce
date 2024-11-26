@@ -22,5 +22,11 @@
             {{product.description}}
         </li>
     </ul>
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit">Add to my basket</button>
+        </form>
+    {% endif %}
     <a href="{% url 'products' category_id=product.category.id %}">Back to products</a>
 {% endblock %}

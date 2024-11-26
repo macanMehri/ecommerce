@@ -2,7 +2,8 @@ from django.urls import path, include
 from django.contrib.auth.views import LogoutView
 from .views import (
     category_view, product_view, add_product_view, add_category_view, insurances_view,
-    add_insurance_view, purchase_basket_view, a_product_view
+    add_insurance_view, purchase_basket_view, a_product_view, add_to_basket, increment_purchase,
+    decrement_purchase
 )
 
 
@@ -16,4 +17,7 @@ urlpatterns = [
     path('add_insurance/', add_insurance_view, name='add_insurance'),
     path('purchase_basket/', purchase_basket_view, name='purchase_basket'),
     path('a_product/<int:product_id>/', a_product_view, name='a_product'),
+    path('add_to_basket/<int:product_id>/', add_to_basket, name='add_to_basket'),
+    path('increment_purchase/<int:purchase_id>/', increment_purchase, name='increment_purchase'),
+    path('decrement_purchase/<int:purchase_id>/', decrement_purchase, name='decrement_purchase'),
 ]

@@ -3,6 +3,7 @@ from .models import Product, Category, Insurance, PurchaseBasket
 from .forms import ProductForm, CategoryForm, InsuranceForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db.models import F
 
 
 def category_view(request):
@@ -99,3 +100,37 @@ def a_product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
     return render(request, 'a_product.html', {'product': product})
+
+
+@login_required
+def add_to_basket(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+
+    basket_item, created = PurchaseBasket.objects.get_or_create(
+            user=request.user,
+            product=product,
+            is_completed=False
+    )
+
+    if not created:
+        basket_item.count = F('count') + 1
+        basket_item.save()
+
+    return redirect('a_product', product_id=product.id)
+
+
+def increment_purchase(request, purchase_id):
+    basket_item = get_object_or_404(PurchaseBasket, id=purchase_id, user=request.user)
+    basket_item.count = F('count') + 1
+    basket_item.save()
+    return redirect('purchase_basket')
+
+
+def decrement_purchase(request, purchase_id):
+    basket_item = get_object_or_404(PurchaseBasket, id=purchase_id, user=request.user)
+    if basket_item.count > 1:
+        basket_item.count = F('count') - 1
+        basket_item.save()
+    else:
+        basket_item.delete()
+    return redirect('purchase_basket')

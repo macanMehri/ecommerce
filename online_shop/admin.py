@@ -23,7 +23,7 @@ class BaseAdmin(admin.ModelAdmin):
 
 
 @admin.register(Category)
-class AdminRestaurant(BaseAdmin):
+class AdminCategory(BaseAdmin):
     list_display = (
         'id',
         'title',
@@ -41,7 +41,7 @@ class AdminRestaurant(BaseAdmin):
 
 
 @admin.register(Insurance)
-class AdminCategory(BaseAdmin):
+class AdminInsurance(BaseAdmin):
     list_display = (
         'id',
         'name',
@@ -62,7 +62,7 @@ class AdminCategory(BaseAdmin):
 
 
 @admin.register(Product)
-class AdminOrder(BaseAdmin):
+class AdminProduct(BaseAdmin):
     list_display = (
         'id',
         'title',
@@ -87,11 +87,12 @@ class AdminOrder(BaseAdmin):
 
 
 @admin.register(PurchaseBasket)
-class AdminRestaurantMenu(BaseAdmin):
+class AdminPurchaseBasket(BaseAdmin):
     list_display = (
         'id',
         'user',
         'product',
+        'count',
         'is_completed',
         'is_active',
         'created_date',

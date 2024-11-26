@@ -5,7 +5,20 @@
     <ul>
         {% for purchase_to_do in purchases_to_do %}
             <li>
-                <a href="{% url 'categories' %}">{{ purchase_to_do.product }}</a>
+                <a href="{% url 'a_product' product_id=purchase_to_do.product.id %}">{{ purchase_to_do.product }}</a>
+                <span>Count: {{ purchase_to_do.count }}</span>
+                <div class="quantity-buttons">
+                    <!-- Button to increase the count -->
+                    <form method="post" action="{% url 'increment_purchase' purchase_id=purchase_to_do.id %}">
+                        {% csrf_token %}
+                        <button type="submit">+</button>
+                    </form>
+                    <!-- Button to decrease the count -->
+                    <form method="post" action="{% url 'decrement_purchase' purchase_id=purchase_to_do.id %}">
+                        {% csrf_token %}
+                        <button type="submit">-</button>
+                    </form>
+                </div>
             </li>
         {% endfor %}
     </ul>
