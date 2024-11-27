@@ -15,6 +15,9 @@
                         <button type="submit">Add to my basket</button>
                     </form>
                 {% endif %}
+                {% if user.is_staff %}
+                    <a href="{% url 'confirm_product_delete' product_id=product.id %}">Delete</a>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>

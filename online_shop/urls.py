@@ -3,7 +3,7 @@ from django.contrib.auth.views import LogoutView
 from .views import (
     category_view, product_view, add_product_view, add_category_view, insurances_view,
     add_insurance_view, purchase_basket_view, a_product_view, add_to_basket, increment_purchase,
-    decrement_purchase, purchase_history_view
+    decrement_purchase, purchase_history_view, delete_category_view, delete_insurance_view, delete_product_view
 )
 
 
@@ -21,4 +21,7 @@ urlpatterns = [
     path('add_to_basket/<int:product_id>/', add_to_basket, name='add_to_basket'),
     path('increment_purchase/<int:purchase_id>/', increment_purchase, name='increment_purchase'),
     path('decrement_purchase/<int:purchase_id>/', decrement_purchase, name='decrement_purchase'),
+    path('confirm_category_delete/<int:category_id>', delete_category_view, name='confirm_category_delete'),
+    path('confirm_insurance_delete/<int:insurance_id>', delete_insurance_view, name='confirm_insurance_delete'),
+    path('confirm_product_delete/<int:product_id>', delete_product_view, name='confirm_product_delete'),
 ]

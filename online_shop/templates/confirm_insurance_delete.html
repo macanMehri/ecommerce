@@ -1,0 +1,9 @@
+<h1>Delete Insurance</h1>
+<p class="confirmation-text">Are you sure you want to delete the insurance {{ insurance.name }} ?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes</button>
+</form>
+
+<a href="{% url 'insurances' %}" >Cancel</a>

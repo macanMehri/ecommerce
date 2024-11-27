@@ -10,7 +10,10 @@
                 <a href="{% url 'insurances' %}">{{ insurance.name }}</a><br>
                 <a href="{% url 'insurances' %}">{{ insurance.insurance_type }}</a><br>
                 <a href="{% url 'insurances' %}">{{ insurance.expires }}</a><br>
-                <a href="{% url 'insurances' %}">{{ insurance.description }}</a><br>
+                <a href="{% url 'insurances' %}">{{ insurance.description }}</a>
+                {% if user.is_staff %}
+                    <a href="{% url 'confirm_insurance_delete' insurance_id=insurance.id %}">Delete</a>
+                {% endif %}
             </li>
         {% endfor %}
     </ul>
