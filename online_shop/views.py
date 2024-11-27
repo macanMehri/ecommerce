@@ -6,6 +6,10 @@ from django.contrib.auth.models import User
 from django.db.models import F
 
 
+def index_view(request):
+    return render(request, 'index.html')
+
+
 def calculate_total(purchases) -> float:
     total = 0
     for purchase in purchases:
