@@ -1,0 +1,25 @@
+<h2>Add review</h2>
+
+<form method="post">
+    {% csrf_token %}
+
+    <!-- Display Form Errors (Global Errors) -->
+    {% if form.errors %}
+        <div>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- Form Fields -->
+    {{ form.as_p }}
+
+    <!-- Submit Button -->
+    <button type="submit">Add Review</button>
+    <a href="{% url 'a_product' product_id=product.id %}">Cancel</a>
+</form>

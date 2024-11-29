@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category, Insurance, PurchaseBasket
-from .forms import ProductForm, CategoryForm, InsuranceForm
+from .forms import ProductForm, CategoryForm, InsuranceForm, UsersReviewForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import F
@@ -207,3 +207,20 @@ def decrement_purchase(request, purchase_id):
     else:
         basket_item.delete()
     return redirect('purchase_basket')
+
+
+@login_required
+def add_review_view(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    if request.method == 'POST':
+        form = UsersReviewForm(request.POST, product)
+        if form.is_valid():
+            review = form.save(commit=False)
+            review.product = product
+            review.is_active = True
+            review.save()
+            return redirect('a_product', product_id=product_id)
+    else:
+        form = UsersReviewForm()
+
+    return render(request, 'add_review.html', {'form': form, 'product': product})

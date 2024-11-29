@@ -16,7 +16,7 @@
             {{product.insurance}}
         </li>
         <li>
-            {{product.image}}
+            {{product.rate}}
         </li>
         <li>
             {{product.description}}
@@ -28,5 +28,6 @@
             <button type="submit">Add to my basket</button>
         </form>
     {% endif %}
+    <a href="{% url 'add_review' product_id=product.id %}">Add review</a>
     <a href="{% url 'products' category_id=product.category.id %}">Back to products</a>
 {% endblock %}

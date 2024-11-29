@@ -1,5 +1,6 @@
 from django import forms
 from .models import Product, Category, Insurance
+import users.models as um
 
 
 class ProductForm(forms.ModelForm):
@@ -18,3 +19,9 @@ class InsuranceForm(forms.ModelForm):
     class Meta:
         model = Insurance
         fields = ['name', 'insurance_type', 'expires', 'description']
+
+
+class UsersReviewForm(forms.ModelForm):
+    class Meta:
+        model = um.UsersReview
+        fields = ['rate', 'description']
