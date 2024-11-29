@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Insurance, Product, PurchaseBasket
+from .models import Category, Insurance, Product, PurchaseBasket, ProductPicture
 
 
 # My actions
@@ -69,8 +69,8 @@ class AdminProduct(BaseAdmin):
         'price',
         'category',
         'insurance',
-        'image',
         'description',
+        'rate',
         'is_active',
         'created_date',
         'updated_date',
@@ -106,3 +106,22 @@ class AdminPurchaseBasket(BaseAdmin):
     ordering = ('pk',)
 
     search_fields = ('id', 'user__username', 'product__title',)
+
+
+@admin.register(ProductPicture)
+class AdminProductPicture(BaseAdmin):
+    list_display = (
+        'id',
+        'product',
+        'image',
+        'is_active',
+        'created_date',
+        'updated_date',
+    )
+    list_display_links = ('id', 'product',)
+    list_filter = ('product', 'image', 'is_active', 'created_date', 'updated_date')
+    list_editable = ('is_active',)
+    # Order by primary key
+    ordering = ('pk',)
+
+    search_fields = ('id', 'product__title',)

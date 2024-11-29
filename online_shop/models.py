@@ -1,5 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+import users.models as um
+
+
+def validate_rate(value):
+    if value < 0 or value > 5:
+        raise ValidationError('Product rate must be between numbers 0 and 5!')
 
 
 class BaseModel(models.Model):
@@ -16,6 +22,7 @@ class BaseModel(models.Model):
 
 class Category(BaseModel):
     title = models.CharField(max_length=255, blank=False, verbose_name='Title')
+    image = models.ImageField(verbose_name='Image')
 
     class Meta:
         verbose_name = 'Category'
@@ -53,16 +60,41 @@ class Product(BaseModel):
         Insurance, on_delete=models.CASCADE, verbose_name='Insurance'
     )
 
-    image = models.ImageField(verbose_name='Image')
-
     description = models.TextField(blank=False, verbose_name='Description')
 
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
 
+    @property
+    def rate(self):
+        reviews = um.UsersReview.objects.filter(is_actibe=True)
+        total = 0
+        for review in reviews:
+            total += review.rate
+
+        count = len(reviews)
+        if count > 0:
+            average = total / count
+        else:
+            average = 0
+
+        return average
+
     def __str__(self):
         return f'{self.title}'
+
+
+class ProductPicture(BaseModel):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Product')
+    image = models.ImageField(verbose_name='Image')
+
+    class Meta:
+        verbose_name = 'ProductPicture'
+        verbose_name_plural = 'ProductPictures'
+
+    def __str__(self):
+        return f'{self.product.name}'
 
 
 class PurchaseBasket(BaseModel):
