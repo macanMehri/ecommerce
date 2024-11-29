@@ -65,7 +65,7 @@ def add_category_view(request):
     if request.user.is_staff:
 
         if request.method == 'POST':
-            form = CategoryForm(request.POST)
+            form = CategoryForm(request.POST, request.FILES)
             if form.is_valid():
                 category = form.save(commit=False)
                 category.is_active = True
