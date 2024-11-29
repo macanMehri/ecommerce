@@ -68,7 +68,7 @@ class Product(BaseModel):
 
     @property
     def rate(self):
-        reviews = um.UsersReview.objects.filter(is_actibe=True)
+        reviews = um.UsersReview.objects.filter(is_active=True)
         total = 0
         for review in reviews:
             total += review.rate
