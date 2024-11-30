@@ -94,7 +94,7 @@ class ProductPicture(BaseModel):
         verbose_name_plural = 'ProductPictures'
 
     def __str__(self):
-        return f'{self.product.name}'
+        return f'{self.product.title}'
 
 
 class PurchaseBasket(BaseModel):

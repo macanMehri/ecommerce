@@ -3,6 +3,11 @@
 {% block content %}
     <h2>Product</h2>
     <ul>
+        {% for image in images %}
+        <li>
+            <img src="{{ image.image.url }}" alt="Product Image" width="75px" height="75px">
+        </li>
+        {% endfor %}
         <li>
             {{product.title}}
         </li>

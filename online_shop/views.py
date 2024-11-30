@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Category, Insurance, PurchaseBasket
+from .models import Product, Category, Insurance, PurchaseBasket, ProductPicture
 from .forms import ProductForm, CategoryForm, InsuranceForm, UsersReviewForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -172,7 +172,9 @@ def purchase_history_view(request):
 def a_product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
-    return render(request, 'a_product.html', {'product': product})
+    images = ProductPicture.objects.filter(product=product, is_active=True)
+
+    return render(request, 'a_product.html', {'product': product, 'images': images})
 
 
 @login_required
