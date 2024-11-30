@@ -33,6 +33,18 @@
             <button type="submit">Add to my basket</button>
         </form>
     {% endif %}
-    <a href="{% url 'add_review' product_id=product.id %}">Add review</a>
+    <ol>
+        {% for review in reviews %}
+            <li>
+                {{review.rate}}
+            </li>
+            <li>
+                {{review.description}}
+            </li>
+        {% endfor %}
+    </ol>
+    {% if user.is_authenticated %}
+        <a href="{% url 'add_review' product_id=product.id %}">Add review</a>
+    {% endif %}
     <a href="{% url 'products' category_id=product.category.id %}">Back to products</a>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category, Insurance, PurchaseBasket, ProductPicture
 from .forms import ProductForm, CategoryForm, InsuranceForm, UsersReviewForm
+import users.models as um
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import F
@@ -174,7 +175,13 @@ def a_product_view(request, product_id):
 
     images = ProductPicture.objects.filter(product=product, is_active=True)
 
-    return render(request, 'a_product.html', {'product': product, 'images': images})
+    reviews = um.UsersReview.objects.filter(product=product, is_active=True)
+
+    return render(
+        request, 'a_product.html', {
+            'product': product, 'images': images, 'reviews': reviews,
+        }
+    )
 
 
 @login_required
