@@ -1,24 +1,64 @@
-<h2>Add product picture</h2>
+{% extends 'master.html' %}
 
-<form method="post" enctype="multipart/form-data">
+{% block title %}Add Address{% endblock %}
+
+{% block content %}
+<h2>Add Address</h2>
+
+<form method="post">
     {% csrf_token %}
 
-    <!-- Display Form Errors (Global Errors) -->
-    {% if form.errors %}
-        <div>
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
-                    {% endfor %}
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
+    <!-- Province Dropdown -->
+    <label for="province">Province:</label>
+    <select id="province" name="province" required>
+        <option value="">Select a province</option>
+        {% for province in provinces %}
+            <option value="{{ province.id }}">{{ province.province_name }}</option>
+        {% endfor %}
+    </select>
 
-    <!-- Form Fields -->
-    {{ form.as_p }}
+    <!-- City Dropdown -->
+    <label for="city">City:</label>
+    <select id="city" name="city" required>
+        <option value="">Select a city</option>
+    </select>
+
+    <!-- Street Field -->
+    <label for="street">Street:</label>
+    <input type="text" id="street" name="street" required>
+
+    <!-- Address Details Field -->
+    <label for="address_details">Address Details:</label>
+    <textarea id="address_details" name="address_details" required></textarea>
+
+    <!-- Number Field -->
+    <label for="number">Number:</label>
+    <input type="text" id="number" name="number" required>
 
     <!-- Submit Button -->
     <button type="submit">Add Address</button>
 </form>
+
+
+<script>
+    document.getElementById('province').addEventListener('change', function () {
+        const provinceId = this.value;
+        const citySelect = document.getElementById('city');
+        citySelect.innerHTML = '<option value="">Select a city</option>';
+
+        if (provinceId) {
+            fetch(`/users/get_cities/${provinceId}/`)
+                .then(response => response.json())
+                .then(data => {
+                    data.cities.forEach(city => {
+                        const option = document.createElement('option');
+                        option.value = city.id;
+                        option.textContent = city.name;
+                        citySelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching cities:', error));
+        }
+    });
+</script>
+{% endblock %}
