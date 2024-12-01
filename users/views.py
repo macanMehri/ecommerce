@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, AddressForm
 from django.contrib.auth import authenticate, login
 from online_shop import templates
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from .models import ProvinceCities, Province, Address, UserAddress
+from django.http import JsonResponse
 
 
 def login_view(request):
@@ -35,3 +38,24 @@ def signup_view(request):
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})
+
+
+@login_required
+def add_address_view(request):
+    if request.method == 'POST':
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            address = form.save(commit=False)
+            address.save()
+            user_address, _ = UserAddress.objects.get_or_create(
+                user=request.user,
+                address=address,
+                defaults={'is_default': False},
+            )
+            # return redirect('')
+
+    else:
+        form = AddressForm()
+
+    return render(request, 'add_address.html', {'form': form})
+
