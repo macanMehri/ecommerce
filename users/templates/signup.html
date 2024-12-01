@@ -9,7 +9,7 @@
     {% endif %}
 
     <div>
-        <label for="id_username">username: </label>
+        <label for="id_username">Username: </label>
         {{ form.username }}
         {% if form.username.errors %}
         <div>
@@ -17,9 +17,19 @@
         </div>
         {% endif %}
     </div>
+    <div>
+        <label for="email">Email: </label>
+        {{ form.email }}
+        {% if form.email.errors %}
+        <div>
+            {{ form.email.errors }}
+        </div>
+        {% endif %}
+    </div>
+
 
     <div>
-        <label for="id_password1">password: </label>
+        <label for="id_password1">Password: </label>
         {{ form.password1 }}
         {% if form.password1.errors %}
         <div>
@@ -29,7 +39,7 @@
     </div>
 
     <div>
-        <label for="id_password2">confirm password: </label>
+        <label for="id_password2">Confirm password: </label>
         {{ form.password2 }}
         {% if form.password2.errors %}
         <div>
