@@ -142,32 +142,34 @@ def delete_product_view(request, product_id):
 
 @login_required
 def purchase_basket_view(request):
-    purchases_to_do = PurchaseBasket.objects.filter(
-        user=request.user, is_completed=False,
-    ).order_by('-created_date')
+    if not request.user.is_staff:
+        purchases_to_do = PurchaseBasket.objects.filter(
+            user=request.user, is_completed=False,
+        ).order_by('-created_date')
 
-    total = calculate_total(purchases=purchases_to_do)
+        total = calculate_total(purchases=purchases_to_do)
 
-    return render(
-        request, 'purchase_basket.html', {
-            'purchases_to_do': purchases_to_do, 'total': total
-        }
-    )
+        return render(
+            request, 'purchase_basket.html', {
+                'purchases_to_do': purchases_to_do, 'total': total
+            }
+        )
 
 
 @login_required
 def purchase_history_view(request):
-    purchases_history = PurchaseBasket.objects.filter(
-        user=request.user, is_completed=True
-    ).order_by('created_date')
+    if not request.user.is_staff:
+        purchases_history = PurchaseBasket.objects.filter(
+            user=request.user, is_completed=True
+        ).order_by('created_date')
 
-    total = calculate_total(purchases=purchases_history)
+        total = calculate_total(purchases=purchases_history)
 
-    return render(
-        request, 'purchase_history.html', {
-            'purchases_history': purchases_history, 'total': total
-        }
-    )
+        return render(
+            request, 'purchase_history.html', {
+                'purchases_history': purchases_history, 'total': total
+            }
+        )
 
 
 def a_product_view(request, product_id):
@@ -186,19 +188,20 @@ def a_product_view(request, product_id):
 
 @login_required
 def add_to_basket(request, product_id):
-    product = get_object_or_404(Product, id=product_id)
+    if not request.user.is_staff:
+        product = get_object_or_404(Product, id=product_id)
 
-    basket_item, created = PurchaseBasket.objects.get_or_create(
-            user=request.user,
-            product=product,
-            is_completed=False
-    )
+        basket_item, created = PurchaseBasket.objects.get_or_create(
+                user=request.user,
+                product=product,
+                is_completed=False
+        )
 
-    if not created:
-        basket_item.count = F('count') + 1
-        basket_item.save()
+        if not created:
+            basket_item.count = F('count') + 1
+            basket_item.save()
 
-    return redirect('a_product', product_id=product.id)
+        return redirect('a_product', product_id=product.id)
 
 
 def increment_purchase(request, purchase_id):

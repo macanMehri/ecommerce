@@ -30,7 +30,7 @@
             {{product.description}}
         </li>
     </ul>
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and not user.is_staff %}
         <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit">Add to my basket</button>
