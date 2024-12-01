@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category, Insurance, PurchaseBasket, ProductPicture
-from .forms import ProductForm, CategoryForm, InsuranceForm, UsersReviewForm
+from .forms import ProductForm, CategoryForm, InsuranceForm, UsersReviewForm, ProductPictureForm
 import users.models as um
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -233,3 +233,36 @@ def add_review_view(request, product_id):
         form = UsersReviewForm()
 
     return render(request, 'add_review.html', {'form': form, 'product': product})
+
+
+@login_required
+def add_product_picture_view(request, product_id):
+    if request.user.is_staff:
+        product = get_object_or_404(Product, id=product_id)
+        if request.method == 'POST':
+            form = ProductPictureForm(request.POST, request.FILES)
+            if form.is_valid():
+                product_picture = form.save(commit=False)
+                product_picture.product = product
+                product_picture.is_active = True
+                product_picture.save()
+                return redirect('a_product', product_id=product.id)
+        else:
+            form = ProductPictureForm()
+        return render(
+            request, 'add_product_picture.html', {'form': form, 'product': product}
+        )
+
+
+@login_required
+def delete_product_picture_view(request, product_picture_id):
+    if request.user.is_staff:
+        product_picture = get_object_or_404(ProductPicture, id=product_picture_id)
+
+        if request.method == 'POST':
+            product_picture.delete()
+            return redirect('a_product', product_id=product_picture.product.id)
+
+        return render(
+            request, 'confirm_product_picture_delete.html', {'product_picture': product_picture}
+        )

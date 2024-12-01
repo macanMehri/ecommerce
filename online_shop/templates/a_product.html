@@ -6,6 +6,9 @@
         {% for image in images %}
         <li>
             <img src="{{ image.image.url }}" alt="Product Image" width="75px" height="75px">
+            {% if user.is_staff %}
+                <a href="{% url 'confirm_product_picture_delete' product_picture_id=image.id %}">Delete Image</a>
+            {% endif %}
         </li>
         {% endfor %}
         <li>
@@ -36,15 +39,16 @@
     <ol>
         {% for review in reviews %}
             <li>
-                {{review.rate}}
-            </li>
-            <li>
+                {{review.rate}}* -
                 {{review.description}}
             </li>
         {% endfor %}
     </ol>
     {% if user.is_authenticated %}
         <a href="{% url 'add_review' product_id=product.id %}">Add review</a>
+    {% endif %}
+    {% if user.is_staff %}
+        <a href="{% url 'add_product_picture' product_id=product.id %}">Add picture</a>
     {% endif %}
     <a href="{% url 'products' category_id=product.category.id %}">Back to products</a>
 {% endblock %}
