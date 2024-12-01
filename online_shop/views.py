@@ -270,3 +270,53 @@ def delete_product_picture_view(request, product_picture_id):
         return render(
             request, 'confirm_product_picture_delete.html', {'product_picture': product_picture}
         )
+
+
+@login_required
+def edit_product_view(request, product_id):
+    if request.user.is_staff:
+        product = get_object_or_404(Product, id=product_id)
+
+        if request.method == 'POST':
+            form = ProductForm(request.POST, instance=product)
+            if form.is_valid():
+                form.save()
+                return redirect('a_product', product_id=product.id)
+        else:
+            form = ProductForm(instance=product)
+
+        return render(request, 'edit_product.html', {'form': form})
+
+
+@login_required
+def edit_category_view(request, category_id):
+    if request.user.is_staff:
+        category = get_object_or_404(Category, id=category_id)
+
+        if request.method == 'POST':
+            form = CategoryForm(request.POST, request.FILES, instance=category)
+            if form.is_valid():
+                form.save()
+                return redirect('categories')
+        else:
+            form = CategoryForm(instance=category)
+
+        return render(request, 'edit_category.html', {'form': form})
+
+
+@login_required
+def edit_insurance_view(request, insurance_id):
+    if request.user.is_staff:
+        insurance = get_object_or_404(Insurance, id=insurance_id)
+
+        if request.method == 'POST':
+            form = InsuranceForm(request.POST, instance=insurance)
+            if form.is_valid():
+                form.save()
+                return redirect('insurances')
+        else:
+            form = InsuranceForm(instance=insurance)
+
+        return render(request, 'edit_insurance.html', {'form': form})
+
+

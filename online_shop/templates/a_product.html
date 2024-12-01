@@ -52,6 +52,7 @@
     {% endif %}
     {% if user.is_staff %}
         <a href="{% url 'add_product_picture' product_id=product.id %}">Add picture</a>
+        <a href="{% url 'edit_product' product_id=product.id %}">Edit product</a>
     {% endif %}
     <a href="{% url 'products' category_id=product.category.id %}">Back to products</a>
 {% endblock %}

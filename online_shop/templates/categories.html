@@ -13,6 +13,7 @@
                 <a href="{% url 'products' category_id=category.id %}">{{ category.title }}</a>
                 <img src="{{ category.image.url }}" alt="{{ category.title }}" width="50px" height="50px">
                 {% if user.is_staff %}
+                    <a href="{% url 'edit_category' category_id=category.id %}">Edit category</a>
                     <a href="{% url 'confirm_category_delete' category_id=category.id %}">Delete</a>
                 {% endif %}
             </li>
