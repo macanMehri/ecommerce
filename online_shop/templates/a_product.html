@@ -39,6 +39,9 @@
     <ol>
         {% for review in reviews %}
             <li>
+                {% if user.is_staff %}
+                    {{review.user}}:
+                {% endif %}
                 {{review.rate}}* -
                 {{review.description}}
             </li>
