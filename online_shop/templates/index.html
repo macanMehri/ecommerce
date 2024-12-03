@@ -1,12 +1,36 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block title %}
-  Home
+  Home - E-commerce
 {% endblock %}
 
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+<section class="hero">
+    <div class="hero-content">
+        <h2>Welcome to E-commerce</h2>
+        <p>Find the best deals on your favorite products!</p>
+        <div class="categories-container">
+            {% for category in categories %}
 
-  <a href="{% url 'categories' %}">List of categories</a>
+                <div class="category-item">
+                    <a href="{% url 'products' category_id=category.id %}" class="category-link">
+                        <div class="image-container">
+                            <img src="{{ category.image.url }}" alt="{{ category.title }}" width="400px" height="250px">
+                            <div class="overlay">
+                                <h3>{{ category.title }}</h3>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            {% empty %}
+                <p>No categories available.</p>
+            {% endfor %}
+        </div>
+        <br><br><br>
+        <a href="{% url 'all_products' %}" class="btn">Shop Now</a>
+    </div>
+</section>
 
 {% endblock %}

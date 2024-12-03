@@ -8,7 +8,19 @@ from django.db.models import F
 
 
 def index_view(request):
-    return render(request, 'index.html')
+    categories = Category.objects.filter(is_active=True)[:6]
+    return render(request, 'index.html', {'categories': categories})
+
+
+def all_products(request):
+    products = Product.objects.filter(is_active=True)
+    return render(request, 'all_products.html', {'products': products})
+
+
+@login_required
+def control_panel(request):
+    if request.user.is_staff:
+        return render(request, 'control_panel.html')
 
 
 def calculate_total(purchases) -> float:

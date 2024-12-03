@@ -1,32 +1,45 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+
 <h2>Login</h2>
-<form method="post">
+
+<form method="post" class="login-form">
     {% csrf_token %}
 
+    <!-- Display Non-Field Errors -->
     {% if form.non_field_errors %}
-    <div>
-        {{ form.non_field_errors }}
-    </div>
+        <div class="form-errors">
+            {{ form.non_field_errors }}
+        </div>
     {% endif %}
 
-    <div>
-        <label for="id_username">username: </label>
+    <!-- Username Field -->
+    <div class="form-group">
+        <label for="id_username">Username:</label>
         {{ form.username }}
         {% if form.username.errors %}
-        <div>
-            {{ form.username.errors }}
-        </div>
+            <div class="error-message">
+                {{ form.username.errors }}
+            </div>
         {% endif %}
     </div>
 
-    <div>
-        <label for="id_password">password: </label>
+    <!-- Password Field -->
+    <div class="form-group">
+        <label for="id_password">Password:</label>
         {{ form.password }}
         {% if form.password.errors %}
-        <div>
-            {{ form.password.errors }}
-        </div>
+            <div class="error-message">
+                {{ form.password.errors }}
+            </div>
         {% endif %}
     </div>
 
-    <button type="submit">Login</button>
+    <!-- Submit Button -->
+    <button type="submit" class="btn">Login</button>
+    <a href="{% url 'signup' %}">Don't Have An Account?</a>
 </form>
+
+{% endblock %}

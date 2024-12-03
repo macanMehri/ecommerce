@@ -11,7 +11,7 @@ from django.http import JsonResponse
 def login_view(request):
     if request.user.is_authenticated:
         messages.error(request, "You are already logged in!")
-        return redirect('categories')
+        return redirect('/')
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -20,7 +20,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('categories')
+                return redirect('/')
         else:
             form.add_error(None, 'Invalid username or password! Please try again.')
     else:
@@ -34,7 +34,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('login')
+            return redirect('/')
     else:
         form = SignUpForm()
     return render(request, 'signup.html', {'form': form})

@@ -1,52 +1,67 @@
-<h2>Sign up</h2>
-<form method="post">
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+
+<h2>Sign Up</h2>
+
+<form method="post" class="sign-up-form">
     {% csrf_token %}
 
+    <!-- Display Non-Field Errors -->
     {% if form.non_field_errors %}
-    <div>
-        {{ form.non_field_errors }}
-    </div>
+        <div class="form-errors">
+            {{ form.non_field_errors }}
+        </div>
     {% endif %}
 
-    <div>
-        <label for="id_username">Username: </label>
+    <!-- Username Field -->
+    <div class="form-group">
+        <label for="id_username">Username:</label>
         {{ form.username }}
         {% if form.username.errors %}
-        <div>
-            {{ form.username.errors }}
-        </div>
+            <div class="error-message">
+                {{ form.username.errors }}
+            </div>
         {% endif %}
     </div>
-    <div>
-        <label for="email">Email: </label>
+
+    <!-- Email Field -->
+    <div class="form-group">
+        <label for="id_email">Email:</label>
         {{ form.email }}
         {% if form.email.errors %}
-        <div>
-            {{ form.email.errors }}
-        </div>
+            <div class="error-message">
+                {{ form.email.errors }}
+            </div>
         {% endif %}
     </div>
 
-
-    <div>
-        <label for="id_password1">Password: </label>
+    <!-- Password Field -->
+    <div class="form-group">
+        <label for="id_password1">Password:</label>
         {{ form.password1 }}
         {% if form.password1.errors %}
-        <div>
-            {{ form.password1.errors }}
-        </div>
+            <div class="error-message">
+                {{ form.password1.errors }}
+            </div>
         {% endif %}
     </div>
 
-    <div>
-        <label for="id_password2">Confirm password: </label>
+    <!-- Confirm Password Field -->
+    <div class="form-group">
+        <label for="id_password2">Confirm Password:</label>
         {{ form.password2 }}
         {% if form.password2.errors %}
-        <div>
-            {{ form.password2.errors }}
-        </div>
+            <div class="error-message">
+                {{ form.password2.errors }}
+            </div>
         {% endif %}
     </div>
 
-    <button type="submit">Sign up</button>
+    <!-- Submit Button -->
+    <button type="submit" class="btn">Sign Up</button>
+    <a href="{% url 'login' %}" class="login-link">Already Have An Account?</a>
 </form>
+
+{% endblock %}

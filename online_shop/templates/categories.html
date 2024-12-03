@@ -1,22 +1,29 @@
 {% extends "master.html" %}
-
-
+{% load static %}
 {% block content %}
-
+<link rel="stylesheet" href="{% static 'css/categories.css' %}">
+<section class="categories">
     <h2>Categories</h2>
-        {% if user.is_staff %}
-            <a href="{% url 'add_category' %}">Add new category</a><br>
-        {% endif %}
-    <ul>
+    <div class="categories-container">
         {% for category in categories %}
-            <li>
-                <a href="{% url 'products' category_id=category.id %}">{{ category.title }}</a>
-                <img src="{{ category.image.url }}" alt="{{ category.title }}" width="50px" height="50px">
+            <div class="category-item">
+                <a href="{% url 'products' category_id=category.id %}" class="category-link">
+                    <div class="image-container">
+                        <img src="{{ category.image.url }}" alt="{{ category.title }}" width="400px" height="250px">
+                        <div class="overlay">
+                            <h3>{{ category.title }}</h3>
+                        </div>
+                    </div>
+                </a>
                 {% if user.is_staff %}
-                    <a href="{% url 'edit_category' category_id=category.id %}">Edit category</a>
-                    <a href="{% url 'confirm_category_delete' category_id=category.id %}">Delete</a>
+                    <div class="admin-actions">
+                        <a href="{% url 'edit_category' category_id=category.id %}" class="edit-button">Edit</a>
+                        <a href="{% url 'confirm_category_delete' category_id=category.id %}" class="delete-button">Delete</a>
+                    </div>
                 {% endif %}
-            </li>
+            </div>
         {% endfor %}
-    </ul>
+    </div>
+    <a href="{% url 'index' %}" class="back-home">Home</a>
+</section>
 {% endblock %}

@@ -1,25 +1,54 @@
-<h2>Add review</h2>
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/add_review.css' %}">
 
-<form method="post">
-    {% csrf_token %}
+<div class="add-review-container">
+    <h2>Add Review</h2>
+    <form method="post" class="add-review-form">
+        {% csrf_token %}
 
-    <!-- Display Form Errors (Global Errors) -->
-    {% if form.errors %}
-        <div>
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
+        <!-- Display Form Errors -->
+        {% if form.errors %}
+            <div class="error-messages">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-            </ul>
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Description Field -->
+        <div class="description-container">
+            <label for="id_description">Description:</label>
+            <textarea name="description" id="id_description" rows="7" required placeholder="Write your review..."></textarea>
         </div>
-    {% endif %}
 
-    <!-- Form Fields -->
-    {{ form.as_p }}
+        <!-- Star Rating -->
+        <div class="rating-container">
+            <label for="id_rate">Rate:</label>
+            <div class="star-rating">
+                <input type="radio" id="star5" name="rate" value="5" required>
+                <label for="star5" title="5 stars">★</label>
+                <input type="radio" id="star4" name="rate" value="4">
+                <label for="star4" title="4 stars">★</label>
+                <input type="radio" id="star3" name="rate" value="3">
+                <label for="star3" title="3 stars">★</label>
+                <input type="radio" id="star2" name="rate" value="2">
+                <label for="star2" title="2 stars">★</label>
+                <input type="radio" id="star1" name="rate" value="1">
+                <label for="star1" title="1 star">★</label>
+            </div>
+        </div>
 
-    <!-- Submit Button -->
-    <button type="submit">Add Review</button>
-    <a href="{% url 'a_product' product_id=product.id %}">Cancel</a>
-</form>
+        <!-- Buttons -->
+        <div class="form-buttons">
+            <button type="submit" class="btn-submit">Submit</button>
+            <a href="{% url 'a_product' product_id=product.id %}" class="btn-cancel">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

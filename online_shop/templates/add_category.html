@@ -1,11 +1,15 @@
-<h2>Add Category</h2>
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<h2 class="form-title">Add Category</h2>
+<link rel="stylesheet" href="{% static 'css/add_category.css' %}">
 
-<form method="post" enctype="multipart/form-data">
+<form method="post" enctype="multipart/form-data" class="styled-form">
     {% csrf_token %}
 
-    <!-- Display Form Errors (Global Errors) -->
+    <!-- Display Form Errors -->
     {% if form.errors %}
-        <div>
+        <div class="error-container">
             <ul>
                 {% for field in form %}
                     {% for error in field.errors %}
@@ -19,7 +23,10 @@
     <!-- Form Fields -->
     {{ form.as_p }}
 
-    <!-- Submit Button -->
-    <button type="submit">Add Category</button>
-    <a href="{% url 'categories' %}">Cancel</a>
+    <!-- Action Buttons -->
+    <div class="form-buttons">
+        <button type="submit" class="btn-submit">Add Category</button>
+        <a href="{% url 'categories' %}" class="btn-cancel">Cancel</a>
+    </div>
 </form>
+{% endblock %}

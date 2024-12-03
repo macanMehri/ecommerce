@@ -1,0 +1,50 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+
+<section class="products">
+    <h2>Products</h2>
+    {% if products %}
+        <div class="products-container">
+            {% for product in products %}
+                <div class="product-item">
+                    <a href="{% url 'a_product' product_id=product.id %}">
+                        <div class="image-container">
+                            {% if product.productpicture_set.exists %}
+                                {% with product.productpicture_set.first as first_picture %}
+                                    <img src="{{ first_picture.image.url }}" alt="{{ product.title }}" width="400px" height="250px">
+                                {% endwith %}
+                            {% else %}
+                                <img src="{{ product.category.image.url }}" alt="{{ product.category.name }}" width="400px" height="250px">
+                            {% endif %}
+                            <div class="overlay">
+                                <h3>{{ product.title }}</h3>
+                            </div>
+                        </div>
+                    </a>
+
+                    {% if user.is_staff %}
+                        <div class="actions">
+                            <a href="{% url 'edit_product' product_id=product.id %}" class="edit-button">Edit</a>
+                            <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="delete-button">Delete</a>
+                        </div>
+                    {% endif %}
+
+                    {% if user.is_authenticated %}
+                        <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            {% if not user.is_staff %}
+                                <button type="submit" class="add-to-basket-button">Add to Basket</button>
+                            {% endif %}
+                        </form>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No products available.</p>
+    {% endif %}
+    <a href="{% url 'categories' %}" class="back-to-categories">Back to Categories</a>
+</section>
+{% endblock %}

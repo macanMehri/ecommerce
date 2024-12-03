@@ -1,0 +1,123 @@
+.products-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.product-item {
+    position: relative;
+    width: 300px; /* Reduced width for smaller items */
+    text-align: center;
+}
+
+.image-container {
+    width: 100%;
+    height: 200px; /* Reduced height for smaller images */
+    object-fit: cover;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+    color: white;
+    font-size: 16px; /* Adjusted font size for smaller images */
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.add-to-basket-button,
+.delete-button,
+.edit-button {
+    padding: 5px 10px;
+    font-size: 12px; /* Reduced font size for smaller buttons */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    cursor: pointer;
+}
+
+.add-to-basket-button {
+    background-color: #28a745;
+}
+
+.add-to-basket-button:hover {
+    background-color: #218838;
+}
+
+.delete-button {
+    background-color: #d9534f;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+.edit-button {
+    background-color: #007bff;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.back-to-categories {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 8px 16px; /* Adjusted padding */
+    background-color: #4f0d1f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-to-categories:hover {
+    background-color: #3b0a16;
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}

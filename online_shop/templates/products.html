@@ -1,27 +1,43 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/products.css' %}">
+
+<section class="products">
     <h2>Products</h2>
-        {% if user.is_staff %}
-            <a href="{% url 'add_product' %}">Add new product</a><br>
-        {% endif %}
-    <ul>
+
+    <div class="products-container">
         {% for product in products %}
-            <li>
-                <a href="{% url 'a_product' product_id=product.id %}">{{ product.title }}</a>
-                {% if user.is_authenticated %}
-                    <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" style="display:inline;">
-                        {% csrf_token %}
-                        {% if not user.is_staff %}
-                            <button type="submit">Add to my basket</button>
-                        {% endif %}
-                    </form>
-                {% endif %}
-                {% if user.is_staff %}
-                    <a href="{% url 'confirm_product_delete' product_id=product.id %}">Delete</a>
-                {% endif %}
-            </li>
+            <div class="product-item">
+                <a href="{% url 'a_product' product_id=product.id %}" class="product-link">
+                    <div class="image-container">
+                      {% if product.productpicture_set.exists %}
+                        {% with product.productpicture_set.first as first_picture %}
+                            <img src="{{ first_picture.image.url }}" alt="{{ product.title }}" width="400px" height="250px">
+                        {% endwith %}
+                    {% else %}
+                        <img src="{{ product.category.image.url }}" alt="{{ product.category.name }}" width="400px" height="250px">
+                    {% endif %}
+                        <div class="overlay">
+                            <h3>{{ product.title }}</h3>
+                        </div>
+                    </div>
+                </a>
+                <div class="actions">
+                    {% if user.is_authenticated and not user.is_staff %}
+                        <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="add-to-basket-button">Add to Basket</button>
+                        </form>
+                    {% endif %}
+                    {% if user.is_staff %}
+                        <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="delete-button">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
         {% endfor %}
-    </ul>
-    <a href="{% url 'categories' %}">Back to categories</a>
+    </div>
+
+    <a href="{% url 'categories' %}" class="back-to-categories">Back to Categories</a>
+</section>
 {% endblock %}

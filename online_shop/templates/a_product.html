@@ -1,58 +1,76 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block content %}
-    <h2>Product</h2>
-    <ul>
-        {% for image in images %}
-        <li>
-            <img src="{{ image.image.url }}" alt="Product Image" width="75px" height="75px">
-            {% if user.is_staff %}
-                <a href="{% url 'confirm_product_picture_delete' product_picture_id=image.id %}">Delete Image</a>
+<link rel="stylesheet" href="{% static 'css/a_product.css' %}">
+
+<div class="product-page">
+    <h2>{{ product.title }}</h2>
+    <div class="product-details">
+        <!-- Images Section -->
+        <div class="product-images">
+            {% if images %}
+                {% for image in images %}
+                    <div class="image-container">
+                        <img src="{{ image.image.url }}" alt="Product Image">
+                        {% if user.is_staff %}
+                            <a href="{% url 'confirm_product_picture_delete' product_picture_id=image.id %}" class="delete-link">Delete Image</a>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div class="image-container">
+                    <img src="{{ product.category.image.url }}" alt="Category Image">
+                </div>
             {% endif %}
-        </li>
-        {% endfor %}
-        <li>
-            {{product.title}}
-        </li>
-        <li>
-            {{product.price}}
-        </li>
-        <li>
-            {{product.category}}
-        </li>
-        <li>
-            {{product.insurance}}
-        </li>
-        <li>
-            {{product.rate}}
-        </li>
-        <li>
-            {{product.description}}
-        </li>
-    </ul>
+        </div>
+        <!-- Product Information -->
+        <div class="product-info">
+            <p><strong>Price:</strong> ${{ product.price }}</p>
+            <p><strong>Category:</strong> {{ product.category }}</p>
+            <p><strong>Insurance:</strong> {{ product.insurance }}</p>
+            <p><strong>Rating:</strong> {{ product.rate }} / 5</p>
+            <p><strong>Description:</strong> {{ product.description }}</p>
+        </div>
+    </div>
+
+    <!-- Add to Basket Button -->
     {% if user.is_authenticated and not user.is_staff %}
-        <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" style="display:inline;">
+        <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" class="basket-form">
             {% csrf_token %}
-            <button type="submit">Add to my basket</button>
+            <button type="submit" class="btn btn-primary">Add to my basket</button>
         </form>
     {% endif %}
-    <ol>
-        {% for review in reviews %}
-            <li>
-                {% if user.is_staff %}
-                    {{review.user}}:
-                {% endif %}
-                {{review.rate}}* -
-                {{review.description}}
-            </li>
-        {% endfor %}
-    </ol>
-    {% if user.is_authenticated %}
-        <a href="{% url 'add_review' product_id=product.id %}">Add review</a>
-    {% endif %}
-    {% if user.is_staff %}
-        <a href="{% url 'add_product_picture' product_id=product.id %}">Add picture</a>
-        <a href="{% url 'edit_product' product_id=product.id %}">Edit product</a>
-    {% endif %}
-    <a href="{% url 'products' category_id=product.category.id %}">Back to products</a>
+
+    <!-- Reviews Section -->
+    <div class="reviews-section">
+        <h3>Reviews</h3>
+        {% if reviews %}
+            <ol class="reviews-list">
+                {% for review in reviews %}
+                    <li>
+                        {% if user.is_staff %}
+                            <strong>{{ review.user }}:</strong>
+                        {% endif %}
+                        {{ review.rate }}★ - {{ review.description }}
+                    </li>
+                {% endfor %}
+            </ol>
+        {% else %}
+            No reviews
+        {% endif %}
+    </div>
+
+    <div class="action-buttons">
+        {% if user.is_authenticated and not user.is_staff %}
+            <a href="{% url 'add_review' product_id=product.id %}" class="btn btn-secondary">Add Review</a>
+        {% endif %}
+        {% if user.is_staff %}
+            <a href="{% url 'add_product_picture' product_id=product.id %}" class="btn btn-info">Add Picture</a>
+            <a href="{% url 'edit_product' product_id=product.id %}" class="btn btn-warning">Edit Product</a>
+        {% endif %}
+        <a href="{% url 'products' category_id=product.category.id %}" class="btn btn-danger">Back to Products</a>
+    </div>
+
+    <!-- Back to Products Link -->
+</div>
 {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/control_panel.css' %}">
+
+<section class="control-panel">
+    <h2>Control Panel</h2>
+
+    {% if user.is_staff %}
+        <div class="panel-links">
+            <a href="{% url 'categories' %}" class="panel-link">View All Categories</a>
+            <a href="{% url 'add_category' %}" class="panel-link">Add New Category</a>
+            <a href="{% url 'insurances' %}" class="panel-link">View All Insurances</a>
+            <a href="{% url 'add_insurance' %}" class="panel-link">Add New Insurance</a>
+            <a href="{% url 'all_products' %}" class="panel-link">View All Products</a>
+            <a href="{% url 'add_product' %}" class="panel-link">Add New Product</a>
+        </div>
+    {% endif %}
+
+    <a href="{% url 'index' %}" class="back-to-home">Back to Home</a>
+</section>
+{% endblock %}

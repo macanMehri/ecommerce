@@ -5,15 +5,17 @@ from .views import (
     add_insurance_view, purchase_basket_view, a_product_view, add_to_basket, increment_purchase,
     decrement_purchase, purchase_history_view, delete_category_view, delete_insurance_view,
     delete_product_view, add_review_view, add_product_picture_view, delete_product_picture_view,
-    edit_category_view, edit_insurance_view, edit_product_view
+    edit_category_view, edit_insurance_view, edit_product_view, all_products, control_panel
 )
 
 
 urlpatterns = [
+    path('control_panel/', control_panel, name='control_panel'),
+    path('all_products/', all_products, name='all_products'),
     path('categories/', category_view, name='categories'),
     path('products/<int:category_id>', product_view, name='products'),
     path('insurances/', insurances_view, name='insurances'),
-    path('logout/', LogoutView.as_view(next_page='/online_shop/categories/'), name='logout'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
     path('add_product/', add_product_view, name='add_product'),
     path('add_category/', add_category_view, name='add_category'),
     path('add_insurance/', add_insurance_view, name='add_insurance'),

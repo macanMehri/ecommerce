@@ -1,0 +1,83 @@
+/* Style the login form */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 5px;
+    display: block;
+}
+
+input {
+    width: 90%;
+    padding: 7px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+/* Error messages styling */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Styling for non-field errors */
+.form-errors {
+    color: #e74c3c;
+    margin-bottom: 10px;
+}
+
+/* Button Styling */
+button.btn {
+    width: 100%;
+    padding: 7px;
+    font-size: 1.1rem;
+    background-color: #151840;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button.btn:hover {
+    background-color: #0a0c1f;
+}
+
+/* Small text for "Forgot Password" or links (optional) */
+a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-top: 10px;
+    text-align: center;
+}
+
+a:hover {
+    text-decoration: underline;
+}
