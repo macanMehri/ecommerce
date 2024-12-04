@@ -1,9 +1,17 @@
-<h1>Delete Insurance</h1>
-<p class="confirmation-text">Are you sure you want to delete the insurance {{ insurance.name }} ?</p>
+{% extends "master.html" %}
+{% block content %}
+{% load static %}
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes</button>
-</form>
+<link rel="stylesheet" href="{% static 'css/delete.css' %}">
+<div class="delete-confirmation-container">
+    <h1>Delete Insurance</h1>
+    <p class="confirmation-text">Are you sure you want to delete the insurance {{ insurance.name }} ?</p>
 
-<a href="{% url 'insurances' %}" >Cancel</a>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes</button>
+    </form>
+
+    <a href="{% url 'insurances' %}" >Cancel</a>
+</div>
+{% endblock %}

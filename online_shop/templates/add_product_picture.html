@@ -1,3 +1,5 @@
+{% extends "master.html" %}
+{% block content %}
 <h2>Add product picture</h2>
 
 <form method="post" enctype="multipart/form-data">
@@ -23,3 +25,4 @@
     <button type="submit">Add Picture</button>
     <a href="{% url 'a_product' product_id=product.id %}">Cancel</a>
 </form>
+{% endblock %}

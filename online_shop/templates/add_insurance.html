@@ -1,3 +1,5 @@
+{% extends "master.html" %}
+{% block content %}
 <h2>Add insurance</h2>
 
 <form method="post">
@@ -23,3 +25,4 @@
     <button type="submit">Add Insurance</button>
     <a href="{% url 'insurances' %}">Cancel</a>
 </form>
+{% endblock %}

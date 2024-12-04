@@ -1,3 +1,5 @@
+{% extends "master.html" %}
+{% block content %}
 <h2>Add product</h2>
 
 <form method="post">
@@ -23,3 +25,4 @@
     <button type="submit">Add Product</button>
     <a href="{% url 'categories' %}">Cancel</a>
 </form>
+{% endblock %}

@@ -1,9 +1,17 @@
-<h1>Delete Product</h1>
-<p class="confirmation-text">Are you sure you want to delete the product {{ product.title }} ?</p>
+{% extends "master.html" %}
+{% block content %}
+{% load static %}
 
-<form method="post">
-    {% csrf_token %}
-    <button type="submit">Yes</button>
-</form>
+<link rel="stylesheet" href="{% static 'css/delete.css' %}">
+<div class="delete-confirmation-container">
+    <h1>Delete Product</h1>
+    <p class="confirmation-text">Are you sure you want to delete the product {{ product.title }} ?</p>
 
-<a href="{% url 'products' category_id=product.category.id %}" >Cancel</a>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes</button>
+    </form>
+
+    <a href="{% url 'products' category_id=product.category.id %}" >Cancel</a>
+</div>
+{% endblock %}
