@@ -4,7 +4,7 @@ from .forms import ProductForm, CategoryForm, InsuranceForm, UsersReviewForm, Pr
 import users.models as um
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import F
+from django.db.models import F, Q
 
 
 def index_view(request):
@@ -13,8 +13,14 @@ def index_view(request):
 
 
 def all_products(request):
-    products = Product.objects.filter(is_active=True)
-    return render(request, 'all_products.html', {'products': products})
+    query = request.GET.get('query', '')
+    if query:
+        products = Product.objects.filter(
+            Q(title__icontains=query) | Q(category__title__icontains=query)
+        )
+    else:
+        products = Product.objects.filter(is_active=True)
+    return render(request, 'all_products.html', {'products': products, 'query': query})
 
 
 @login_required
@@ -38,8 +44,9 @@ def category_view(request):
 
 def product_view(request, category_id):
     products = Product.objects.filter(is_active=True, category__id=category_id).order_by('-created_date')
+    category = get_object_or_404(Category, id=category_id)
 
-    return render(request, 'products.html', {'products': products})
+    return render(request, 'products.html', {'products': products, 'category': category})
 
 
 @login_required

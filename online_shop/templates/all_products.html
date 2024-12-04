@@ -3,6 +3,13 @@
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/products.css' %}">
 
+<section class="search-section">
+    <form method="get" action="{% url 'all_products' %}" class="search-form">
+        <input type="text" name="query" placeholder="Search for products..." value="{{ request.GET.query }}" class="search-input">
+        <button type="submit" class="search-button">Search</button>
+    </form>
+</section>
+
 <section class="products">
     <h2>Products</h2>
     {% if products %}

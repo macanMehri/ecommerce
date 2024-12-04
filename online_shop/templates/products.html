@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/products.css' %}">
 
 <section class="products">
-    <h2>Products</h2>
+    <h2>{{ category.title }}</h2>
 
     <div class="products-container">
         {% for product in products %}
@@ -31,6 +31,7 @@
                         </form>
                     {% endif %}
                     {% if user.is_staff %}
+                        <a href="{% url 'edit_product' product_id=product.id %}" class="edit-button">Edit</a>
                         <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="delete-button">Delete</a>
                     {% endif %}
                 </div>
