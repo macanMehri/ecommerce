@@ -1,18 +1,39 @@
-{% extends 'master.html' %}
-
+{% extends "master.html" %}
+{% load static %}
 {% block title %}Edit Category{% endblock %}
 
 {% block content %}
-<h1>Edit Category</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save Changes</button>
-</form>
-{% if form.errors %}
-    <div class="alert alert-danger">
-        Please correct the errors below.
-    </div>
-{% endif %}
+<link rel="stylesheet" href="{% static 'css/edit_category.css' %}">
 
+<h1 class="page-title">Edit Category</h1>
+
+<form method="post" enctype="multipart/form-data" class="edit-category-form">
+    {% csrf_token %}
+
+    <!-- Display Form Errors -->
+    {% if form.errors %}
+        <div class="form-errors">
+            <p class="error-message">Please correct the errors below:</p>
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- Form Fields -->
+    <div class="form-fields">
+        {{ form.as_p }}
+    </div>
+
+    <!-- Submit Button -->
+    <div class="form-actions">
+        <button type="submit" class="btn-submit">Save Changes</button>
+        <a href="{% url 'categories' %}" class="btn-cancel">Cancel</a>
+    </div>
+</form>
 {% endblock %}
+

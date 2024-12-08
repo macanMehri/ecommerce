@@ -1,28 +1,35 @@
 {% extends "master.html" %}
+{% load static %}
 {% block content %}
-<h2>Add insurance</h2>
+<link rel="stylesheet" href="{% static 'css/add_insurance.css' %}">
 
-<form method="post">
-    {% csrf_token %}
+<div class="form-container">
+    <h2>Add Insurance</h2>
 
-    <!-- Display Form Errors (Global Errors) -->
-    {% if form.errors %}
-        <div>
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
+    <form method="post" class="insurance-form">
+        {% csrf_token %}
+
+        <!-- Display Form Errors (Global Errors) -->
+        {% if form.errors %}
+            <div class="form-errors">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-            </ul>
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Render Form Fields -->
+        {{ form.as_p }}
+
+        <!-- Buttons -->
+        <div class="form-actions">
+            <button type="submit" class="btn submit-btn">Add Insurance</button>
+            <a href="{% url 'control_panel' %}" class="btn cancel-btn">Cancel</a>
         </div>
-    {% endif %}
-
-    <!-- Form Fields -->
-    {{ form.as_p }}
-
-    <!-- Submit Button -->
-    <button type="submit">Add Insurance</button>
-    <a href="{% url 'insurances' %}">Cancel</a>
-</form>
+    </form>
+</div>
 {% endblock %}

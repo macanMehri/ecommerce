@@ -1,28 +1,35 @@
 {% extends "master.html" %}
+{% load static %}
 {% block content %}
-<h2>Add product</h2>
+<link rel="stylesheet" href="{% static 'css/add_product.css' %}">
 
-<form method="post">
-    {% csrf_token %}
+<div class="form-container">
+    <h2>Add Product</h2>
 
-    <!-- Display Form Errors (Global Errors) -->
-    {% if form.errors %}
-        <div>
-            <ul>
-                {% for field in form %}
-                    {% for error in field.errors %}
-                        <li>{{ error }}</li>
+    <form method="post" class="product-form">
+        {% csrf_token %}
+
+        <!-- Display Form Errors (Global Errors) -->
+        {% if form.errors %}
+            <div class="form-errors">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
                     {% endfor %}
-                {% endfor %}
-            </ul>
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Form Fields -->
+        {{ form.as_p }}
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="submit" class="btn submit-btn">Add Product</button>
+            <a href="{% url 'control_panel' %}" class="btn cancel-btn">Cancel</a>
         </div>
-    {% endif %}
-
-    <!-- Form Fields -->
-    {{ form.as_p }}
-
-    <!-- Submit Button -->
-    <button type="submit">Add Product</button>
-    <a href="{% url 'categories' %}">Cancel</a>
-</form>
+    </form>
+</div>
 {% endblock %}

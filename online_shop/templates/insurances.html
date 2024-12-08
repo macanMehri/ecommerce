@@ -1,24 +1,33 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block content %}
-{% if request.user.is_staff %}
-    <h2>Insurances</h2>
+<link rel="stylesheet" href="{% static 'css/insurances.css' %}">
 
-    <ul>
-        {% for insurance in insurances %}
-            <li>
-                <a href="{% url 'insurances' %}">{{ insurance.name }}</a><br>
-                <a href="{% url 'insurances' %}">{{ insurance.insurance_type }}</a><br>
-                <a href="{% url 'insurances' %}">{{ insurance.expires }}</a><br>
-                <a href="{% url 'insurances' %}">{{ insurance.description }}</a>
-                {% if user.is_staff %}
-                    <a href="{% url 'edit_insurance' insurance_id=insurance.id %}">Edit insurance</a>
-                    <a href="{% url 'confirm_insurance_delete' insurance_id=insurance.id %}">Delete</a>
-                {% endif %}
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="{% url 'add_insurance' %}">Add new Insurance</a>
-    <a href="{% url 'categories' %}">Back to categories</a>
+{% if request.user.is_staff %}
+    <div class="insurance-container">
+        <h2>Insurances</h2>
+
+        <ul class="insurance-list">
+            {% for insurance in insurances %}
+                <li class="insurance-item">
+                    <div class="insurance-details">
+                        <p><strong>Name:</strong> {{ insurance.name }}</p>
+                        <p><strong>Type:</strong> {{ insurance.insurance_type }}</p>
+                        <p><strong>Expires:</strong> {{ insurance.expires }}</p>
+                        <p><strong>Description:</strong> {{ insurance.description }}</p>
+                    </div>
+                    <div class="insurance-actions">
+                        <a href="{% url 'edit_insurance' insurance_id=insurance.id %}" class="btn edit-btn">Edit</a>
+                        <a href="{% url 'confirm_insurance_delete' insurance_id=insurance.id %}" class="btn delete-btn">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="actions">
+            <a href="{% url 'add_insurance' %}" class="btn add-btn">Add New Insurance</a>
+            <a href="{% url 'categories' %}" class="btn back-btn">Back to Categories</a>
+        </div>
+    </div>
 {% endif %}
 {% endblock %}

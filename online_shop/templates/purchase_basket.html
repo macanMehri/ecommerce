@@ -1,30 +1,43 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}">
+
+<div class="container">
     <h2>My Basket</h2>
+
+    {% if purchases_to_do %}
     <ul>
         {% for purchase_to_do in purchases_to_do %}
-            <li>
-                <a href="{% url 'a_product' product_id=purchase_to_do.product.id %}">{{ purchase_to_do.product }}</a>
-                <span>Count: {{ purchase_to_do.count }}</span>
-                <span>Cost: {{ purchase_to_do.product.price }}</span>
-                <span>Total Cost: {{ purchase_to_do.total_price }}</span>
-                <div class="quantity-buttons">
-                    <!-- Button to increase the count -->
-                    <form method="post" action="{% url 'increment_purchase' purchase_id=purchase_to_do.id %}">
-                        {% csrf_token %}
-                        <button type="submit">+</button>
-                    </form>
-                    <!-- Button to decrease the count -->
-                    <form method="post" action="{% url 'decrement_purchase' purchase_id=purchase_to_do.id %}">
-                        {% csrf_token %}
-                        <button type="submit">-</button>
-                    </form>
-                </div>
-            </li>
+        <li>
+            <div class="product-details">
+                <a href="{% url 'a_product' product_id=purchase_to_do.product.id %}"><strong>{{ purchase_to_do.product }}</strong></a><br>
+                <span>Count: {{ purchase_to_do.count }}</span><br>
+                <span>Cost: ${{ purchase_to_do.product.price }}</span><br>
+                <span>Total: ${{ purchase_to_do.total_price }}</span>
+            </div>
+            <div class="quantity-buttons">
+                <form method="post" action="{% url 'increment_purchase' purchase_id=purchase_to_do.id %}">
+                    {% csrf_token %}
+                    <button type="submit">+</button>
+                </form>
+                <form method="post" action="{% url 'decrement_purchase' purchase_id=purchase_to_do.id %}">
+                    {% csrf_token %}
+                    <button type="submit">-</button>
+                </form>
+            </div>
+        </li>
         {% endfor %}
     </ul>
-    <span>Total: {{ total }}</span><br>
-    <a href="{% url 'purchase_history' %}">Last purchases</a>
-    <a href="{% url 'categories' %}">Back to categories</a>
+    {% else %}
+        <p style="text-align: center; color: #555;">Your basket is currently empty.</p>
+    {% endif %}
+
+    <span class="total-container">Grand Total: ${{ total }}</span>
+
+    <div class="footer-links">
+        <a href="{% url 'purchase_history' %}">View Last Purchases</a>
+        <a href="{% url 'categories' %}">Back to Categories</a>
+    </div>
+</div>
 {% endblock %}

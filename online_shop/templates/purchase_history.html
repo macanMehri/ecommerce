@@ -1,17 +1,32 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block content %}
+<link rel="stylesheet" href="{% static 'css/basket.css' %}">
+
+<div class="container">
     <h2>My Purchase History</h2>
+
+    {% if purchases_history %}
     <ul>
         {% for purchase_history in purchases_history %}
-            <li>
-                <a href="{% url 'a_product' product_id=purchase_history.product.id %}">{{ purchase_history.product }}</a>
-                <span>Count: {{ purchase_history.count }}</span>
-                <span>Cost: {{ purchase_history.product.price }}</span>
-                <span>Total Cost: {{ purchase_history.total_price }}</span>
-            </li>
+        <li>
+            <div class="product-details">
+                <a href="{% url 'a_product' product_id=purchase_history.product.id %}"><strong>{{ purchase_history.product }}</strong></a><br>
+                <span>Count: {{ purchase_history.count }}</span><br>
+                <span>Cost: ${{ purchase_history.product.price }}</span><br>
+                <span>Total Paid: ${{ purchase_history.total_price }}</span>
+            </div>
+        </li>
         {% endfor %}
     </ul>
-    <span>Total: {{ total }}</span><br>
-    <a href="{% url 'categories' %}">Back to categories</a>
+    {% else %}
+        <p style="text-align: center; color: #555;">No purchase history found.</p>
+    {% endif %}
+
+    <span class="total-container">Grand Total Spent: ${{ total }}</span>
+
+    <div class="footer-links">
+        <a href="{% url 'categories' %}">Back to Categories</a>
+    </div>
+</div>
 {% endblock %}
