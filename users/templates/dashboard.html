@@ -24,7 +24,8 @@
                     <li>
                         <p><strong>Address {{ forloop.counter }}:</strong><br>Province: {{ address.address.province }} <br>
                             City: {{ address.address.city }} <br>Street: {{ address.address.street }} <br>
-                            Number: {{ address.address.number }} <br>Details: {{ address.address.address_details }}
+                            Number: {{ address.address.number }} <br>Details: {{ address.address.address_details }}<br>
+                            <a href="{% url 'confirm_address_delete' user_address_id=address.id %}" class="delete-button">Delete</a>
                         </p>
                     </li>
                 {% endfor %}

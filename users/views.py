@@ -60,7 +60,7 @@ def add_address_view(request):
                 address=address,
                 defaults={'is_default': False},
             )
-            # return redirect('')
+            return redirect('dashboard')
     else:
         form = AddressForm()
 
@@ -68,13 +68,19 @@ def add_address_view(request):
 
 
 @login_required
-def my_addresses_view(request):
-    addresses = Address.objects.filter(
-        id__in=UserAddress.objects.filter(user=request.user).values_list('address', flat=True))
-    return render(request, 'my_addresses.html', {'addresses': addresses})
-
-
-@login_required
 def user_dash_view(request):
     addresses = UserAddress.objects.filter(user=request.user)
     return render(request, 'dashboard.html', {'addresses': addresses})
+
+
+@login_required
+def delete_address(request, user_address_id):
+    user_address = get_object_or_404(UserAddress, id=user_address_id)
+
+    if request.method == 'POST':
+        user_address.delete()
+        return redirect('dashboard')
+
+    return render(
+        request, 'confirm_address_delete.html', {'user_address': user_address}
+    )
