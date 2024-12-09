@@ -249,7 +249,6 @@ def add_review_view(request, product_id):
             review = form.save(commit=False)
             review.product = product
             review.user = request.user
-            review.is_active = True
             review.save()
             return redirect('a_product', product_id=product_id)
     else:

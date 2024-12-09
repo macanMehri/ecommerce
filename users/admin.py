@@ -9,6 +9,7 @@ class AdminUsersReview(BaseAdmin):
         'id',
         'user',
         'product',
+        'description',
         'rate',
         'is_active',
         'created_date',
