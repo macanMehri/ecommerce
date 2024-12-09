@@ -1,44 +1,47 @@
 {% extends "master.html" %}
-
+{% load static %}
 {% block title %}Add Address{% endblock %}
 
 {% block content %}
-<h2>Add Address</h2>
+<link rel="stylesheet" href="{% static 'css/address.css' %}">
 
-<form method="post">
-    {% csrf_token %}
+<div class="container">
+    <h2>Add Address</h2>
 
-    <!-- Province Dropdown -->
-    <label for="province">Province:</label>
-    <select id="province" name="province" required>
-        <option value="">Select a province</option>
-        {% for province in provinces %}
-            <option value="{{ province.id }}">{{ province.province_name }}</option>
-        {% endfor %}
-    </select>
+    <form method="post" class="form-container">
+        {% csrf_token %}
 
-    <!-- City Dropdown -->
-    <label for="city">City:</label>
-    <select id="city" name="city" required>
-        <option value="">Select a city</option>
-    </select>
+        <!-- Province Dropdown -->
+        <label for="province">Province:</label>
+        <select id="province" name="province" required>
+            <option value="">Select a province</option>
+            {% for province in provinces %}
+                <option value="{{ province.id }}">{{ province.province_name }}</option>
+            {% endfor %}
+        </select>
 
-    <!-- Street Field -->
-    <label for="street">Street:</label>
-    <input type="text" id="street" name="street" required>
+        <!-- City Dropdown -->
+        <label for="city">City:</label>
+        <select id="city" name="city" required>
+            <option value="">Select a city</option>
+        </select>
 
-    <!-- Address Details Field -->
-    <label for="address_details">Address Details:</label>
-    <textarea id="address_details" name="address_details" required></textarea>
+        <!-- Street Field -->
+        <label for="street">Street:</label>
+        <input type="text" id="street" name="street" placeholder="Enter your street" required>
 
-    <!-- Number Field -->
-    <label for="number">Number:</label>
-    <input type="text" id="number" name="number" required>
+        <!-- Address Details Field -->
+        <label for="address_details">Address Details:</label>
+        <textarea id="address_details" name="address_details" placeholder="Enter address details" required></textarea>
 
-    <!-- Submit Button -->
-    <button type="submit">Add Address</button>
-</form>
+        <!-- Number Field -->
+        <label for="number">Number:</label>
+        <input type="text" id="number" name="number" placeholder="Enter house/apartment number" required>
 
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Add Address</button>
+    </form>
+</div>
 
 <script>
     document.getElementById('province').addEventListener('change', function () {

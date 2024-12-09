@@ -72,3 +72,9 @@ def my_addresses_view(request):
     addresses = Address.objects.filter(
         id__in=UserAddress.objects.filter(user=request.user).values_list('address', flat=True))
     return render(request, 'my_addresses.html', {'addresses': addresses})
+
+
+@login_required
+def user_dash_view(request):
+    addresses = UserAddress.objects.filter(user=request.user)
+    return render(request, 'dashboard.html', {'addresses': addresses})

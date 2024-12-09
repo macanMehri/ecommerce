@@ -62,7 +62,7 @@ class UserAddress(om.BaseModel):
         verbose_name_plural = 'UserAddresses'
 
     def __str__(self):
-        return f'{self.user} : {self.address}'
+        return f'{self.address}'
 
 
 class UsersReview(om.BaseModel):

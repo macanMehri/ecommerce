@@ -17,6 +17,7 @@
             <a href="{% url 'all_products' %}">Shop</a>
             <a href="{% url 'categories' %}">Categories</a>
             {% if user.is_authenticated and not user.is_staff %}
+                <a href="{% url 'dashboard' %}">Dashboard</a>
                 <a href="{% url 'purchase_basket' %}">My Basket</a>
             {% endif %}
             {% if user.is_staff %}

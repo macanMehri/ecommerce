@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+{% load static %}
+{% block title %}User Dashboard{% endblock %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+
+<div class="container">
+    <h2>User Dashboard</h2>
+    
+    <!-- User Information -->
+    <div class="user-info">
+        <h3>Profile Information</h3>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+    
+    <!-- User Addresses -->
+    <div class="address-section">
+        <h3>Your Addresses</h3>
+        {% if addresses %}
+            <ul class="address-list">
+                {% for address in addresses %}
+                    <li>
+                        <p><strong>Address {{ forloop.counter }}:</strong><br>Province: {{ address.address.province }} <br>
+                            City: {{ address.address.city }} <br>Street: {{ address.address.street }} <br>
+                            Number: {{ address.address.number }} <br>Details: {{ address.address.address_details }}
+                        </p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p class="no-address">You have not added any addresses yet.</p>
+        {% endif %}
+        <a href="{% url 'add_address' %}" class="btn">Add New Address</a>
+    </div>
+</div>
+{% endblock %}
