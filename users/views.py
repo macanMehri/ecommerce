@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import LoginForm, SignUpForm, AddressForm
+from .forms import LoginForm, SignUpForm, AddressForm, ChangeUsernameForm, ChangeEmailForm
 from django.contrib.auth import authenticate, login
 from online_shop import templates
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from .models import ProvinceCities, Province, Address, UserAddress
 from django.http import JsonResponse
+from django.contrib.auth.forms import PasswordChangeForm
 
 
 def login_view(request):
@@ -84,3 +85,46 @@ def delete_address(request, user_address_id):
     return render(
         request, 'confirm_address_delete.html', {'user_address': user_address}
     )
+
+
+@login_required
+def change_username(request):
+    if request.method == 'POST':
+        form = ChangeUsernameForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Username updated successfully!')
+            return redirect('dashboard')
+    else:
+        form = ChangeUsernameForm(instance=request.user)
+    return render(request, 'change_username.html', {'form': form})
+
+
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(user=request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important for staying logged in
+            messages.success(request, 'Password updated successfully!')
+            return redirect('dashboard')
+    else:
+        form = PasswordChangeForm(user=request.user)
+    return render(request, 'change_password.html', {'form': form})
+
+
+@login_required
+def change_email(request):
+    if request.method == "POST":
+        form = ChangeEmailForm(request.POST)
+        if form.is_valid():
+            new_email = form.cleaned_data["new_email"]
+            request.user.email = new_email
+            request.user.save()
+            messages.success(request, "Your email has been updated successfully.")
+            return redirect("dashboard")
+    else:
+        form = ChangeEmailForm()
+
+    return render(request, 'change_email.html', {"form": form})

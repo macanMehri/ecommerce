@@ -13,6 +13,9 @@
         <h3>Profile Information</h3>
         <p><strong>Username:</strong> {{ user.username }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>
+        <a href="{% url 'change_username' %}" class="btn">Change Username</a>
+        <a href="{% url 'change_email' %}" class="btn">Change Email</a>
+        <a href="{% url 'change_password' %}" class="btn">Change Password</a>
     </div>
     
     <!-- User Addresses -->

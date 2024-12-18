@@ -1,0 +1,30 @@
+{% extends "master.html" %}
+
+{% block title %}Change Username{% endblock %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/change_info.css' %}">
+
+<div class="container">
+    <h2>Change Username</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Save Changes</button>
+        <a href="{% url 'dashboard' %}" class="btn cancel-btn">Cancel</a>
+    </form>
+
+    {% if form.errors %}
+        <div class="error-section">
+            <p class="error-text">Please correct the errors below:</p>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                    <li>{{ errors }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
