@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 import users.models as um
+from django.core.exceptions import ValidationError
+
+
+def validate_positive(value):
+    if value <= 0:
+        raise ValidationError('The price should be greater than 0!')
 
 
 def validate_rate(value):
@@ -50,7 +56,7 @@ class Insurance(BaseModel):
 class Product(BaseModel):
     title = models.CharField(max_length=255, blank=False, verbose_name='Title')
 
-    price = models.FloatField(verbose_name='Price')
+    price = models.FloatField(verbose_name='Price', validators=[validate_positive])
 
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, verbose_name='Category'
