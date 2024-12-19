@@ -17,8 +17,7 @@
         <a href="{% url 'change_email' %}" class="btn">Change Email</a>
         <a href="{% url 'change_password' %}" class="btn">Change Password</a>
     </div>
-    
-    <!-- User Addresses -->
+    {% if not user.is_authenticated %}
     <div class="address-section">
         <h3>Your Addresses</h3>
         {% if addresses %}
@@ -38,5 +37,6 @@
         {% endif %}
         <a href="{% url 'add_address' %}" class="btn">Add New Address</a>
     </div>
+    {% endif %}
 </div>
 {% endblock %}
