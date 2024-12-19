@@ -1,7 +1,7 @@
 
 # Ecommerce Website
 
-This is a demo website for an online shop with a wild variaty of abilities for owner, staff, and customers. We will publish the demo link that you can see it via the link in demo section. For now, checkout the screenshots section for some views. 
+This is a demo website for an online shop with a wild variety of abilities for owner, staff, and customers. We will publish the demo link that you can see it via the link in demo section. For now, checkout the screenshots section for some views. 
 
 
 ## Authors
