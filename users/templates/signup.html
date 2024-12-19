@@ -1,11 +1,11 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+<link rel="stylesheet" href="{% static 'css/signup_login.css' %}">
 
 <h2>Sign Up</h2>
 
-<form method="post" class="sign-up-form">
+<form method="post" class="form">
     {% csrf_token %}
 
     <!-- Display Non-Field Errors -->
