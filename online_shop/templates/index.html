@@ -9,7 +9,11 @@
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
 <section class="hero">
     <div class="hero-content">
-        <h2>Welcome to E-commerce</h2>
+        {% if user.is_authenticated %}
+            <h2>Welcome to E-commerce {{ user.username }}</h2>
+        {% else %}
+            <h2>Welcome to E-commerce</h2>
+        {% endif %}
         <p>Find the best deals on your favorite products!</p>
         <div class="categories-container">
             {% for category in categories %}

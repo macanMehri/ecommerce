@@ -366,7 +366,6 @@ def edit_offer_view(request, offer_id):
         return render(request, 'edit_offer.html', {'form': form})
 
 
-
 @login_required
 def edit_category_view(request, category_id):
     if request.user.is_staff:
@@ -397,5 +396,3 @@ def edit_insurance_view(request, insurance_id):
             form = InsuranceForm(instance=insurance)
 
         return render(request, 'edit_insurance.html', {'form': form})
-
-
