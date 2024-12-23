@@ -1,6 +1,6 @@
 /* Insurance Container */
 .insurance-container {
-    max-width: 800px;
+    max-width: 950px;
     margin: auto;
     padding: 20px;
     background: #f9f9f9;
@@ -43,6 +43,7 @@
 
 .btn {
     padding: 8px 15px;
+    margin-left: 20px;
     text-align: center;
     border-radius: 5px;
     font-size: 0.9rem;

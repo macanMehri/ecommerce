@@ -5,12 +5,16 @@ from .views import (
     add_insurance_view, purchase_basket_view, a_product_view, add_to_basket, increment_purchase,
     decrement_purchase, purchase_history_view, delete_category_view, delete_insurance_view,
     delete_product_view, add_review_view, add_product_picture_view, delete_product_picture_view,
-    edit_category_view, edit_insurance_view, edit_product_view, all_products, control_panel
+    edit_category_view, edit_insurance_view, edit_product_view, all_products, control_panel,
+    add_offer_view, offers_view, delete_offer_view, edit_offer_view
 )
 
 
 urlpatterns = [
     path('control_panel/', control_panel, name='control_panel'),
+    path('offers/', offers_view, name='offers'),
+    path('delete_offer/<int:offer_id>/', delete_offer_view, name='confirm_offer_delete'),
+    path('edit_offer/<int:offer_id>/', edit_offer_view, name='edit_offer'),
     path('all_products/', all_products, name='all_products'),
     path('categories/', category_view, name='categories'),
     path('products/<int:category_id>', product_view, name='products'),
@@ -38,4 +42,5 @@ urlpatterns = [
     path('edit_product/<int:product_id>/', edit_product_view, name='edit_product'),
     path('edit_category/<int:category_id>/', edit_category_view, name='edit_category'),
     path('edit_insurance/<int:insurance_id>/', edit_insurance_view, name='edit_insurance'),
+    path('add_offer/', add_offer_view, name='add_offer')
 ]

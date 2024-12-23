@@ -1,0 +1,32 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/insurances.css' %}">
+
+{% if request.user.is_staff %}
+    <div class="insurance-container">
+        <h2>Offers</h2>
+
+        <ul class="insurance-list">
+            {% for offer in offers %}
+                <li class="insurance-item">
+                    <div class="insurance-details">
+                        <p><strong>Title:</strong> {{ offer.title }}</p>
+                        <p><strong>Percentage:</strong> {{ offer.percentage }}%</p>
+                        <p><strong>Description:</strong> {{ offer.description }}</p>
+                    </div>
+                    <div class="insurance-actions">
+                        <a href="{% url 'edit_offer' offer_id=offer.id  %}" class="btn edit-btn">Edit</a>
+                        <a href="{% url 'confirm_offer_delete' offer_id=offer.id %}" class="btn delete-btn">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="actions">
+            <a href="{% url 'add_offer' %}" class="btn add-btn">Add New Offer</a>
+            <a href="{% url 'control_panel' %}" class="btn back-btn">Back to Control Panel</a>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from .models import Product, Category, Insurance, ProductPicture
+from .models import Product, Category, Insurance, ProductPicture, Offer
 import users.models as um
 
 
@@ -31,3 +31,9 @@ class ProductPictureForm(forms.ModelForm):
     class Meta:
         model = ProductPicture
         fields = ['image']
+
+
+class OfferForm(forms.ModelForm):
+    class Meta:
+        model = Offer
+        fields = ['title', 'percentage', 'description']

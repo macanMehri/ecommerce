@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/add_product.css' %}">
+
+<div class="form-container">
+    <h2>Add Offer</h2>
+
+    <form method="post" class="product-form">
+        {% csrf_token %}
+
+        <!-- Display Form Errors (Global Errors) -->
+        {% if form.errors %}
+            <div class="form-errors">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+
+        <!-- Form Fields -->
+        {{ form.as_p }}
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="submit" class="btn submit-btn">Add Offer</button>
+            <a href="{% url 'control_panel' %}" class="btn cancel-btn">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}
