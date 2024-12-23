@@ -14,6 +14,11 @@ def validate_rate(value):
         raise ValidationError('Product rate must be between numbers 0 and 5!')
 
 
+def validate_percentage(value):
+    if value < 0 or value > 100:
+        raise ValidationError('Percentage must be between o and 100%!')
+
+
 class BaseModel(models.Model):
     created_date = models.DateTimeField(auto_now_add=True, verbose_name='Created date and time')
     updated_date = models.DateTimeField(auto_now=True, verbose_name='Updated date and time')
@@ -53,10 +58,23 @@ class Insurance(BaseModel):
         return f'{self.name} - {self.insurance_type}'
 
 
+class Offer(BaseModel):
+    title = models.CharField(max_length=255, blank=False, verbose_name='Offer')
+    percentage = models.IntegerField(validators=[validate_percentage], verbose_name='Percentage')
+    description = models.TextField(blank=False, verbose_name='Description')
+
+    class Meta:
+        verbose_name = 'Offer'
+        verbose_name_plural = 'Offers'
+
+    def __str__(self):
+        return f'{self.title} : {self.percentage}%'
+
+
 class Product(BaseModel):
     title = models.CharField(max_length=255, blank=False, verbose_name='Title')
 
-    price = models.FloatField(verbose_name='Price', validators=[validate_positive])
+    raw_price = models.FloatField(verbose_name='Price', validators=[validate_positive])
 
     category = models.ForeignKey(
         Category, on_delete=models.CASCADE, verbose_name='Category'
@@ -68,9 +86,22 @@ class Product(BaseModel):
 
     description = models.TextField(blank=False, verbose_name='Description')
 
+    offer = models.ForeignKey(Offer, default=None, on_delete=models.CASCADE, verbose_name='Offer')
+
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
+
+    @property
+    def price(self):
+        if self.offer.percentage == 0:
+            return self.raw_price
+
+        price_percentage = (100 - self.offer.percentage) / 100
+        raw_price = self.raw_price
+
+        new_price = raw_price * price_percentage
+        return new_price
 
     @property
     def rate(self):

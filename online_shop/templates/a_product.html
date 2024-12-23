@@ -25,7 +25,16 @@
         </div>
         <!-- Product Information -->
         <div class="product-info">
-            <p><strong>Price:</strong> ${{ product.price }}</p>
+            <p>
+              <strong>Price:</strong>
+              {% if product.offer.percentage != 0 %}
+                <span style="text-decoration: line-through; color: gray;">${{ product.raw_price }}</span>
+                <span style="margin-left: 10px; font-weight: bold; color: green;">${{ product.price }}</span>
+                <p><strong>Offer:</strong> {{ product.offer.percentage }}%</p>
+              {% else %}
+                ${{ product.price }}
+              {% endif %}
+            </p>
             <p><strong>Category:</strong> {{ product.category }}</p>
             <p><strong>Insurance:</strong> {{ product.insurance }}</p>
             <p><strong>Rating:</strong> {{ product.rate|floatformat:2 }} / 5</p>

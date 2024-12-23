@@ -6,7 +6,7 @@ import users.models as um
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['title', 'price', 'category', 'insurance', 'description']
+        fields = ['title', 'raw_price', 'category', 'insurance', 'description', 'offer']
 
 
 class CategoryForm(forms.ModelForm):
