@@ -4,6 +4,7 @@
     gap: 30px;
     justify-content: center;
     padding: 20px;
+    margin-left: 220px;
 }
 
 .product-item {
@@ -103,26 +104,15 @@
     background-color: #0056b3;
 }
 
-.back-to-categories {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 8px 16px; /* Adjusted padding */
-    background-color: #4f0d1f;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-}
-
-.back-to-categories:hover {
-    background-color: #3b0a16;
-}
 h2 {
     text-align: center;
     color: #333;
     margin-bottom: 20px;
+    margin-left: 220px;
 }
 /* Search Section */
 .search-section {
+    margin-left: 220px;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -165,3 +155,122 @@ h2 {
 .search-button:hover {
     background-color: #0056b3;
 }
+
+/* Filter Section */
+.filter-section {
+    position: absolute;
+    left: 0;
+    width: 350px;
+    background-color: #f7f5f2;
+    padding: 25px;
+    box-shadow: 5px 5px #403f3e;
+    border-right: 0px solid #ddd;
+    border-radius:  0 50px 50px 0;
+    overflow-y: auto;
+}
+
+.filter-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.filter-section label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.filter-section input,
+.filter-section select,
+.filter-section button {
+    width: 100%;
+    padding: 5px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.filter-section button {
+    background-color: #01373b;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.filter-section button:hover {
+    background-color: #01282b;
+}
+/* Container for Custom Checkbox */
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    padding-bottom: 20px;
+}
+
+/* Hide Default Checkbox */
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+
+/* Custom Checkbox Label Style */
+.custom-checkbox label {
+    cursor: pointer;
+    color: #333;
+    position: relative;
+    padding-left: 40px;
+    display: inline-block;
+}
+
+/* Checkbox Toggle Appearance */
+.custom-checkbox label:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 15px;
+    background-color: #ccc;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+/* Circle Inside the Toggle */
+.custom-checkbox label:after {
+    content: '';
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    width: 11px;
+    height: 11px;
+    background-color: white;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+/* Checked State */
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    background-color: #007bff;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    transform: translateX(15px);
+}
+
+/* Hover Effect */
+.custom-checkbox label:hover:before {
+    background-color: #b3b3b3;
+}
+
+
+/* Hover Effect */
+.styled-checkbox label:hover:before {
+    border-color: #0056b3;
+}
+

@@ -10,6 +10,37 @@
     </form>
 </section>
 
+<section class="filter-section">
+    <form method="get" action="{% url 'all_products' %}" class="filter-form">
+    <!-- Price Range -->
+    <label for="min_price">Min Price:</label>
+    <input type="number" id="min_price" name="min_price" value="{{ request.GET.min_price }}" min="0">
+
+    <label for="max_price">Max Price:</label>
+    <input type="number" id="max_price" name="max_price" value="{{ request.GET.max_price }}" min="0">
+
+    <!-- Category Filter -->
+    <label for="category">Category:</label>
+    <select id="category" name="category">
+        <option value="">All Categories</option>
+        {% for category in categories %}
+            <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
+                {{ category.title }}
+            </option>
+        {% endfor %}
+    </select>
+
+    <!-- Discount Filter -->
+<div class="custom-checkbox">
+    <input type="checkbox" id="discount" name="discount" {% if request.GET.discount %}checked{% endif %}>
+    <label for="discount">Only Discounted Products</label>
+</div>
+
+    <!-- Submit Button -->
+    <button type="submit">Apply Filters</button>
+</form>
+</section>
+
 <section class="products">
     <h2>Products</h2>
     {% if products %}
@@ -52,6 +83,5 @@
     {% else %}
         <p>No products available.</p>
     {% endif %}
-    <a href="{% url 'categories' %}" class="back-to-categories">Back to Categories</a>
 </section>
 {% endblock %}

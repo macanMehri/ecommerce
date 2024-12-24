@@ -16,13 +16,43 @@ def index_view(request):
 
 def all_products(request):
     query = request.GET.get('query', '')
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    category_id = request.GET.get('category')
+    discount_filter = request.GET.get('discount')
+
+    # Fetch active products
+    products = Product.objects.filter(is_active=True)
+
+    # Apply search query
     if query:
-        products = Product.objects.filter(
+        products = products.filter(
             Q(title__icontains=query) | Q(category__title__icontains=query)
         )
-    else:
-        products = Product.objects.filter(is_active=True)
-    return render(request, 'all_products.html', {'products': products, 'query': query})
+
+    # Apply raw price filter (instead of `price` property)
+    if min_price and min_price.isdigit():
+        products = products.filter(raw_price__gte=float(min_price))
+    if max_price and max_price.isdigit():
+        products = products.filter(raw_price__lte=float(max_price))
+
+    # Apply category filter
+    if category_id and category_id.isdigit():
+        products = products.filter(category_id=int(category_id))
+
+    # Apply discount filter
+    if discount_filter:  # Checking for discount presence
+        products = products.exclude(offer__isnull=True).exclude(offer__percentage=0)
+
+    # Fetch all categories for the filter
+    categories = Category.objects.filter(is_active=True)
+
+    return render(request, 'all_products.html', {
+        'products': products,
+        'query': query,
+        'categories': categories,
+        'request': request,
+    })
 
 
 @login_required
