@@ -27,7 +27,7 @@
         <div class="product-info">
             <p>
               <strong>Price:</strong>
-              {% if product.offer.percentage != 0 %}
+              {% if product.offer and product.offer.percentage != 0 %}
                 <span style="text-decoration: line-through; color: gray;">${{ product.raw_price }}</span>
                 <span style="margin-left: 10px; font-weight: bold; color: green;">${{ product.price }}</span>
                 <p><strong>Offer:</strong> {{ product.offer.percentage }}%</p>

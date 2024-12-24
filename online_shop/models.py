@@ -86,7 +86,7 @@ class Product(BaseModel):
 
     description = models.TextField(blank=False, verbose_name='Description')
 
-    offer = models.ForeignKey(Offer, default=None, on_delete=models.CASCADE, verbose_name='Offer')
+    offer = models.ForeignKey(Offer, default=None, on_delete=models.SET_NULL, null=True, verbose_name='Offer')
 
     class Meta:
         verbose_name = 'Product'
@@ -94,7 +94,7 @@ class Product(BaseModel):
 
     @property
     def price(self):
-        if self.offer.percentage == 0:
+        if not self.offer or self.offer.percentage == 0:
             return self.raw_price
 
         price_percentage = (100 - self.offer.percentage) / 100
