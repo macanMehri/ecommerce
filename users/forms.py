@@ -21,7 +21,7 @@ class SignUpForm(UserCreationForm):
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
-        fields = ['province', 'city', 'street', 'address_details', 'number']
+        fields = ['title', 'province', 'city', 'street', 'address_details', 'number']
 
 
 class ChangeUsernameForm(forms.ModelForm):

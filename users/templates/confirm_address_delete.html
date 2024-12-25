@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/delete.css' %}">
 <div class="delete-confirmation-container">
     <h1>Delete Address</h1>
-    <p class="confirmation-text">Are you sure you want to delete address {{ user_address }} ?</p>
+    <p class="confirmation-text">Are you sure you want to delete address {{ user_address.address.title }} ?</p>
 
     <form method="post">
         {% csrf_token %}

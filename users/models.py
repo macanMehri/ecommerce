@@ -38,6 +38,7 @@ class ProvinceCities(om.BaseModel):
 
 
 class Address(om.BaseModel):
+    title = models.CharField(max_length=255, blank=False, verbose_name='Title')
     province = models.ForeignKey(Province, on_delete=models.CASCADE, verbose_name='Province')
     city = models.ForeignKey(City, on_delete=models.CASCADE, verbose_name='City')
     street = models.CharField(max_length=255, blank=False, verbose_name='Street')

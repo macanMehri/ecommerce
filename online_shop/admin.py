@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Insurance, Product, PurchaseBasket, ProductPicture, Offer
+from .models import Category, Insurance, Product, PurchaseBasket, ProductPicture, Discount
 
 
 # My actions
@@ -40,8 +40,8 @@ class AdminCategory(BaseAdmin):
     search_fields = ('title',)
 
 
-@admin.register(Offer)
-class AdminOffer(BaseAdmin):
+@admin.register(Discount)
+class AdminDiscount(BaseAdmin):
     list_display = (
         'id',
         'title',
@@ -86,9 +86,8 @@ class AdminProduct(BaseAdmin):
     list_display = (
         'id',
         'title',
-        'raw_price',
         'price',
-        'offer',
+        'discount',
         'category',
         'insurance',
         'description',
@@ -104,7 +103,7 @@ class AdminProduct(BaseAdmin):
     ordering = ('pk',)
 
     search_fields = (
-        'id', 'title', 'category__title', 'insurance__name'
+        'id', 'title', 'category__title', 'insurance__name', 'discount__percentage',
     )
 
 

@@ -50,6 +50,8 @@ def get_cities(request, province_id):
 
 @login_required
 def add_address_view(request):
+    if request.user.is_staff:
+        return redirect('dashboard')
     provinces = Province.objects.all()
     if request.method == 'POST':
         form = AddressForm(request.POST)

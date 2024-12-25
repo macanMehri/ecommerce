@@ -85,6 +85,7 @@ class AdminProvinceCities(BaseAdmin):
 class AdminAddress(BaseAdmin):
     list_display = (
         'id',
+        'title',
         'province',
         'city',
         'street',

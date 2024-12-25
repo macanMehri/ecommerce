@@ -58,14 +58,14 @@ class Insurance(BaseModel):
         return f'{self.name} - {self.insurance_type}'
 
 
-class Offer(BaseModel):
+class Discount(BaseModel):
     title = models.CharField(max_length=255, blank=False, verbose_name='Offer')
     percentage = models.IntegerField(validators=[validate_percentage], verbose_name='Percentage')
     description = models.TextField(blank=False, verbose_name='Description')
 
     class Meta:
-        verbose_name = 'Offer'
-        verbose_name_plural = 'Offers'
+        verbose_name = 'Discount'
+        verbose_name_plural = 'Discounts'
 
     def __str__(self):
         return f'{self.title} : {self.percentage}%'
@@ -86,7 +86,7 @@ class Product(BaseModel):
 
     description = models.TextField(blank=False, verbose_name='Description')
 
-    offer = models.ForeignKey(Offer, default=None, on_delete=models.SET_NULL, null=True, verbose_name='Offer')
+    discount = models.ForeignKey(Discount, default=None, on_delete=models.SET_NULL, null=True, verbose_name='Discount')
 
     class Meta:
         verbose_name = 'Product'
@@ -94,10 +94,10 @@ class Product(BaseModel):
 
     @property
     def price(self):
-        if not self.offer or self.offer.percentage == 0:
+        if not self.discount or self.discount.percentage == 0:
             return self.raw_price
 
-        price_percentage = (100 - self.offer.percentage) / 100
+        price_percentage = (100 - self.discount.percentage) / 100
         raw_price = self.raw_price
 
         new_price = raw_price * price_percentage

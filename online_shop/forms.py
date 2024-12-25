@@ -1,12 +1,12 @@
 from django import forms
-from .models import Product, Category, Insurance, ProductPicture, Offer
+from .models import Product, Category, Insurance, ProductPicture, Discount
 import users.models as um
 
 
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['title', 'raw_price', 'category', 'insurance', 'description', 'offer']
+        fields = ['title', 'raw_price', 'category', 'insurance', 'description', 'discount']
 
 
 class CategoryForm(forms.ModelForm):
@@ -33,7 +33,7 @@ class ProductPictureForm(forms.ModelForm):
         fields = ['image']
 
 
-class OfferForm(forms.ModelForm):
+class DiscountForm(forms.ModelForm):
     class Meta:
-        model = Offer
+        model = Discount
         fields = ['title', 'percentage', 'description']

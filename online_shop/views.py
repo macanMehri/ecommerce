@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Product, Category, Insurance, PurchaseBasket, ProductPicture, Offer
+from .models import Product, Category, Insurance, PurchaseBasket, ProductPicture, Discount
 from .forms import (
-    ProductForm, CategoryForm, InsuranceForm, UsersReviewForm, ProductPictureForm, OfferForm
+    ProductForm, CategoryForm, InsuranceForm, UsersReviewForm, ProductPictureForm, DiscountForm
 )
 import users.models as um
 from django.contrib.auth.decorators import login_required
@@ -42,7 +42,7 @@ def all_products(request):
 
     # Apply discount filter
     if discount_filter:  # Checking for discount presence
-        products = products.exclude(offer__isnull=True).exclude(offer__percentage=0)
+        products = products.exclude(discount__isnull=True).exclude(discount__percentage=0)
 
     # Fetch all categories for the filter
     categories = Category.objects.filter(is_active=True)
@@ -169,14 +169,14 @@ def add_offer_view(request):
     if request.user.is_staff:
 
         if request.method == 'POST':
-            form = OfferForm(request.POST)
+            form = DiscountForm(request.POST)
             if form.is_valid():
                 offer = form.save(commit=False)
                 offer.is_active = True
                 offer.save()
                 return redirect('offers')
         else:
-            form = OfferForm()
+            form = DiscountForm()
 
         return render(request, 'add_offer.html', {'form': form})
     else:
@@ -186,7 +186,7 @@ def add_offer_view(request):
 @login_required
 def offers_view(request):
     if request.user.is_staff:
-        offers = Offer.objects.filter(is_active=True).order_by('title')
+        offers = Discount.objects.filter(is_active=True).order_by('title')
         return render(request, 'offers.html', {'offers': offers})
     else:
         redirect('index')
@@ -208,7 +208,7 @@ def delete_insurance_view(request, insurance_id):
 @login_required
 def delete_offer_view(request, offer_id):
     if request.user.is_staff:
-        offer = get_object_or_404(Offer, id=offer_id)
+        offer = get_object_or_404(Discount, id=offer_id)
 
         if request.method == 'POST':
             offer.delete()
@@ -383,15 +383,15 @@ def edit_product_view(request, product_id):
 @login_required
 def edit_offer_view(request, offer_id):
     if request.user.is_staff:
-        offer = get_object_or_404(Offer, id=offer_id)
+        offer = get_object_or_404(Discount, id=offer_id)
 
         if request.method == 'POST':
-            form = OfferForm(request.POST, instance=offer)
+            form = DiscountForm(request.POST, instance=offer)
             if form.is_valid():
                 form.save()
                 return redirect('offers')
         else:
-            form = OfferForm(instance=offer)
+            form = DiscountForm(instance=offer)
 
         return render(request, 'edit_offer.html', {'form': form})
 
