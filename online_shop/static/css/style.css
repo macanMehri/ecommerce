@@ -13,14 +13,14 @@ body {
 }
 
 .hero .btn {
-    background: #fa970c;
+    background: #d61b02;
     color: #fff;
     padding: 10px 100px;
     text-decoration: none;
     border-radius: 20px;
 }
 .hero .btn:hover {
-    background: #e38a0b;
+    background: #ba1802;
     color: #fff;
     padding: 10.5px 102px;
 }
