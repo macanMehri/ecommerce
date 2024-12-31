@@ -2,11 +2,14 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/products.css' %}">
-
 <section class="search-section">
     <form method="get" action="{% url 'all_products' %}" class="search-form">
         <input type="text" name="query" placeholder="Search for products..." value="{{ request.GET.query }}" class="search-input">
-        <button type="submit" class="search-button">Search</button>
+        <button type="submit" class="search-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+              <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+        </button>
     </form>
 </section>
 
@@ -21,7 +24,7 @@
 
     <!-- Category Filter -->
     <label for="category">Category:</label>
-    <select id="category" name="category">
+    <select id="category" name="category" class="drop-box">
         <option value="">All Categories</option>
         {% for category in categories %}
             <option value="{{ category.id }}" {% if request.GET.category == category.id|stringformat:"s" %}selected{% endif %}>
@@ -35,9 +38,10 @@
     <input type="checkbox" id="discount" name="discount" {% if request.GET.discount %}checked{% endif %}>
     <label for="discount">Only Discounted Products</label>
 </div>
-
-    <!-- Submit Button -->
+<div class="submit-box">
     <button type="submit">Apply Filters</button>
+    <button class="reset" type="reset" onclick="window.location.href='{% url 'all_products' %}'">Reset Filters</button>
+</div>
 </form>
 </section>
 
