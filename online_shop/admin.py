@@ -92,6 +92,7 @@ class AdminProduct(BaseAdmin):
         'insurance',
         'description',
         'rate',
+        'popularity',
         'is_active',
         'created_date',
         'updated_date',

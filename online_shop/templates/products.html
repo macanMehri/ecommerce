@@ -7,6 +7,9 @@
     <h2>{{ category.title }}</h2>
 
     <div class="products-container">
+        {% if not products %}
+            <strong style="color:#b01212">No Products Available!</strong>
+        {% endif %}
         {% for product in products %}
             <div class="product-item">
                 <a href="{% url 'a_product' product_id=product.id %}" class="product-link">

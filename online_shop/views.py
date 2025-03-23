@@ -22,7 +22,7 @@ def all_products(request):
     discount_filter = request.GET.get('discount')
 
     # Fetch active products
-    products = Product.objects.filter(is_active=True)
+    products = Product.objects.filter(is_active=True).order_by('-popularity')
 
     # Apply search query
     if query:
@@ -268,6 +268,9 @@ def purchase_history_view(request):
 def a_product_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
 
+    product.popularity = F('popularity') + 1
+    product.save()
+
     images = ProductPicture.objects.filter(product=product, is_active=True)
 
     reviews = um.UsersReview.objects.filter(product=product, is_active=True)
@@ -283,6 +286,9 @@ def a_product_view(request, product_id):
 def add_to_basket(request, product_id):
     if not request.user.is_staff:
         product = get_object_or_404(Product, id=product_id)
+
+        product.popularity = F('popularity') + 2
+        product.save()
 
         basket_item, created = PurchaseBasket.objects.get_or_create(
                 user=request.user,

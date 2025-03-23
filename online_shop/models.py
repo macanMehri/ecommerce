@@ -88,6 +88,8 @@ class Product(BaseModel):
 
     discount = models.ForeignKey(Discount, default=None, on_delete=models.SET_NULL, null=True, verbose_name='Discount')
 
+    popularity = models.IntegerField(default=0, verbose_name='Popularity')
+
     class Meta:
         verbose_name = 'Product'
         verbose_name_plural = 'Products'
