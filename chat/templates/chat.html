@@ -1,0 +1,38 @@
+{% extends "master.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet"  href="{% static 'css/chat.css' %}">
+
+    <div class="container">
+    <h3>Messages</h3>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="error-message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        <div class="chat-messages">
+            {% for sent_message in sent_messages %}
+                <div class="sent_message-box">
+                     <strong>{{ sent_message.sender_user.username }} : </strong>{{ sent_message.sent_text }}
+                </div>
+            {% if sent_message.is_responded %}
+            <div class="received_message-box">
+                {{ sent_message.respond_text }} <strong> : {{ sent_message.responder_user.username }}</strong>
+            </div>
+            {% endif %}
+            {% empty %}
+                <p>No messages yet.</p>
+            {% endfor %}
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <textarea name="sent_text" rows="2" required placeholder="Write your message..."></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+{% endblock %}
+
+

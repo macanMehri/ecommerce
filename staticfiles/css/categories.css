@@ -1,0 +1,110 @@
+.categories-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px; /* Adjust spacing between category items */
+    justify-content: center;
+}
+
+.category-item {
+    position: relative;
+    width: 400px;
+    text-align: center;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+}
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+    transform: scale(1.1);
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .overlay {
+    opacity: 1;
+}
+
+.overlay h3 {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.admin-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Add spacing between buttons */
+    margin-top: 10px; /* Add spacing above buttons */
+}
+
+.edit-button,
+.delete-button {
+    padding: 5px 15px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 14px;
+    display: inline-block;
+}
+
+.edit-button {
+    background-color: #007bff;
+}
+
+.delete-button {
+    background-color: #d9534f;
+}
+
+.edit-button:hover {
+    background-color: #0056b3;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+.back-home {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #4f0d1f;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.back-home:hover {
+    background-color: #3b0a16;
+}
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}

@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+
+{% block content %}
+{% load static %}
+<link rel="stylesheet"  href="{% static 'css/available_messages.css' %}">
+
+    <div class="container">
+    <h3>Received Messages</h3>
+
+        <div class="users">
+            {% for user in users %}
+                <div class="users_box">
+                     <a>{{ user.username }}</a>
+                </div>
+            {% empty %}
+                <p>No messages yet.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+

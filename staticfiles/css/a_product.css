@@ -1,0 +1,116 @@
+.product-page {
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    .product-details {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+    .product-images {
+        flex: 1;
+    }
+    .image-container {
+        margin-bottom: 10px;
+        text-align: center;
+    }
+    .image-container img {
+        max-width: 100%;
+        border-radius: 5px;
+    }
+    .delete-link {
+        display: block;
+        color: red;
+        text-decoration: none;
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+    .delete-link:hover {
+        text-decoration: underline;
+    }
+    .product-info {
+        flex: 2;
+    }
+    .product-info p {
+        margin: 5px 0;
+    }
+    .basket-form {
+        margin: 20px 0;
+    }
+
+    .btn-primary {
+        background-color: #28a745;
+        border: none;
+    }
+
+    .btn-primary:hover{
+        background-color: #429945;
+    }
+
+    .reviews-section {
+        margin-top: 20px;
+    }
+    .reviews-list {
+        list-style: none;
+        padding: 0;
+    }
+.reviews-list li {
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 16px; /* Adjust as needed */
+    line-height: 1.5;
+}
+
+.reviews-list li .stars {
+    color: #ffc107; /* Gold color for filled stars */
+    margin-right: 5px; /* Spacing before the review text */
+}
+
+    .action-buttons {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row; /* Align buttons in a row */
+        flex-wrap: wrap; /* Allow buttons to wrap if necessary */
+        gap: 10px; /* Add space between buttons */
+        justify-content: flex-start; /* Align buttons to the left */
+    }
+
+    .btn {
+        padding: 6px 15px;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
+        text-align: center;
+        color: white;
+        display: inline-block;
+        cursor: pointer;
+    }
+    .btn-secondary {
+        background-color: #007bff;
+    }
+    .btn-secondary:hover {
+        background-color: #0056b3;
+    }
+    .btn-info {
+        background-color: #17a2b8;
+    }
+    .btn-info:hover {
+        background-color: #117a8b;
+    }
+    .btn-warning {
+        background-color: #ffc107;
+        color: black;
+    }
+    .btn-warning:hover {
+        background-color: #e0a800;
+    }
+    .btn-danger {
+        background-color: #dc3545;
+    }
+    .btn-danger:hover {
+        background-color: #c82333;
+    }

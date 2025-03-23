@@ -1,0 +1,45 @@
+/* Container styles */
+.container {
+    width: 60%;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+
+    text-align: center;
+}
+
+/* Header styling */
+h3 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+/* Users container */
+.users {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+/* User box styling */
+.users_box {
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    transition: background 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.users_box a:hover {
+    color: #330202;
+}
+
+/* User link styling */
+.users_box a {
+    color: #02094a;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+}
