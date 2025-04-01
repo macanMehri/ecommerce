@@ -10,7 +10,7 @@
         <div class="users">
             {% for user in users %}
                 <div class="users_box">
-                     <a>{{ user.username }}</a>
+                     <a href="{% url 'create_connection' user_id=user.id %}">{{ user.username }}</a>
                 </div>
             {% empty %}
                 <p>No messages yet.</p>

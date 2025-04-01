@@ -75,7 +75,7 @@ def category_view(request):
 
 
 def product_view(request, category_id):
-    products = Product.objects.filter(is_active=True, category__id=category_id).order_by('-created_date')
+    products = Product.objects.filter(is_active=True, category__id=category_id).order_by('-popularity')
     category = get_object_or_404(Category, id=category_id)
 
     return render(request, 'products.html', {'products': products, 'category': category})
@@ -277,7 +277,7 @@ def a_product_view(request, product_id):
 
     return render(
         request, 'a_product.html', {
-            'product': product, 'images': images, 'reviews': reviews,
+            'product': product, 'images': images, 'reviews': reviews, 'number_of_reviews': len(reviews)
         }
     )
 
