@@ -100,6 +100,17 @@ def create_connection(request, user_id):
     return render(request, "chat_for_admin.html", {"form": form, "sent_messages": sent_messages})
 
 
+@login_required
+def disconnect(request, user_id):
+    if request.user.is_staff:
+        user = get_object_or_404(User, id=user_id)
+        connection = get_object_or_404(Connection, admin=request.user, user=user)
+        if request.method == 'POST':
+            connection.delete()
+            return redirect('messages_received')
+        return render(request, 'disconnect.html', {'connection': connection})
+
+
 def set_messages_responded(messages_list):
     for message in messages_list:
         message.is_responded = True
