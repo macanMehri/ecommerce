@@ -49,7 +49,16 @@ def messages_received(request):
         ).values('user')
         users = User.objects.filter(id__in=ids)
 
-        return render(request, 'available_messages.html', {'users': users})
+        last_messages = Message.objects.filter(is_active=True, sender_user__in=ids)
+        # Create a list for users with un answered messages
+        unseen_users = list()
+        for last_message in last_messages:
+            if not last_message.is_responded:
+                unseen_users.append(last_message.sender_user)
+
+        return render(
+            request, 'available_messages.html', {'users': users, 'unseen_users': unseen_users}
+        )
 
 
 @login_required
@@ -79,6 +88,7 @@ def create_connection(request, user_id):
 
     elif request.method == 'POST':
         form = AdminMessageForm(request.POST, instance=last_message)
+        set_messages_responded(sent_messages)
         if form.is_valid():
             last_message.responder_user = request.user
             last_message.is_responded = True
@@ -89,3 +99,8 @@ def create_connection(request, user_id):
         form = AdminMessageForm()
     return render(request, "chat_for_admin.html", {"form": form, "sent_messages": sent_messages})
 
+
+def set_messages_responded(messages_list):
+    for message in messages_list:
+        message.is_responded = True
+        message.save()
