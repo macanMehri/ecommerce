@@ -12,14 +12,14 @@
     </h2>
 
     {% if purchases_to_do %}
-    <ul>
+    <ul class="purchase-list">
         {% for purchase_to_do in purchases_to_do %}
-        <li>
+        <li class="purchase-item">
             <div class="product-details">
-                <a href="{% url 'a_product' product_id=purchase_to_do.product.id %}"><strong>{{ purchase_to_do.product }}</strong></a><br>
+                <a class="link" href="{% url 'a_product' product_id=purchase_to_do.product.id %}"><strong>{{ purchase_to_do.product }}</strong></a><br>
                 <span>Count: {{ purchase_to_do.count }}</span><br>
-                <span>Cost: ${{ purchase_to_do.product.price }}</span><br>
-                <span>Total: ${{ purchase_to_do.total_price }}</span>
+                <span>Cost: ${{ purchase_to_do.product.price|floatformat:2 }}</span><br>
+                <span>Total: ${{ purchase_to_do.total_price|floatformat:2 }}</span>
             </div>
             <div class="quantity-buttons">
                 <form method="post" action="{% url 'increment_purchase' purchase_id=purchase_to_do.id %}">
@@ -38,11 +38,11 @@
         <p style="text-align: center; color: #555;">Your basket is currently empty.</p>
     {% endif %}
 
-    <span class="total-container">Grand Total: ${{ total }}</span>
+    <span class="total-container">Grand Total: ${{ total|floatformat:2 }}</span>
 
     <div class="footer-links">
-        <a href="{% url 'purchase_history' %}">View Last Purchases</a>
-        <a href="{% url 'all_products' %}">Back to Shopping</a>
+        <a class="link" href="{% url 'purchase_history' %}">View Last Purchases</a>
+        <a class="link" href="{% url 'all_products' %}">Back to Shopping</a>
     </div>
 </div>
 {% endblock %}

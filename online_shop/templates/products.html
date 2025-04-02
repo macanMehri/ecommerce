@@ -25,6 +25,16 @@
                             <h3>{{ product.title }}</h3>
                         </div>
                     </div>
+                    <div class="product-info">
+                        <p>{{ product.description }}</p>
+                        <span class="rating">{{ product.rate|floatformat:0 }}★</span><br>
+                        {% if product.discount and product.discount.percentage != 0 %}
+                            <span class="price" style="text-decoration: line-through; color: gray;">${{ product.raw_price|floatformat:2 }}</span>
+                            <span class="price" style="color: green;">${{ product.price|floatformat:2 }}</span>
+                        {% else %}
+                            <span class="price">{{ product.price|floatformat:2 }}$</span>
+                        {% endif %}
+                    </div>
                 </a>
                 <div class="actions">
                     {% if user.is_authenticated and not user.is_staff %}
@@ -33,11 +43,11 @@
                             <button type="submit" class="add-to-basket-button">Add to Basket</button>
                         </form>
                     {% endif %}
-                    {% if user.is_staff %}
-                        <a href="{% url 'edit_product' product_id=product.id %}" class="edit-button">Edit</a>
-                        <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="delete-button">Delete</a>
-                    {% endif %}
                 </div>
+                {% if user.is_staff %}
+                    <a href="{% url 'edit_product' product_id=product.id %}" class="edit-button">Edit</a>
+                    <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="delete-button">Delete</a>
+                {% endif %}
             </div>
         {% endfor %}
     </div>

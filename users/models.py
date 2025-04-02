@@ -78,3 +78,18 @@ class UsersReview(om.BaseModel):
 
     def __str__(self):
         return f'{self.rate}'
+
+
+class UsersImage(om.BaseModel):
+    """For users to send product pictures"""
+    user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='User')
+    product = models.ForeignKey(om.Product, on_delete=models.CASCADE, verbose_name='Product')
+    image = models.ImageField(verbose_name='Image')
+
+    class Meta:
+        verbose_name = 'UsersImage'
+        verbose_name_plural = 'UsersImages'
+
+    def __str__(self):
+        return f'{self.user} : {self.product}'
+

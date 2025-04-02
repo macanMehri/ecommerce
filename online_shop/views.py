@@ -101,7 +101,7 @@ def add_product_view(request):
                 product = form.save(commit=False)
                 product.is_active = True
                 product.save()
-                return redirect('categories')
+                return redirect('control_panel')
 
         else:
             form = ProductForm()
@@ -122,7 +122,7 @@ def add_category_view(request):
                 category = form.save(commit=False)
                 category.is_active = True
                 category.save()
-                return redirect('categories')
+                return redirect('control_panel')
         else:
             form = CategoryForm()
 
@@ -155,7 +155,7 @@ def add_insurance_view(request):
                 insurance = form.save(commit=False)
                 insurance.is_active = True
                 insurance.save()
-                return redirect('insurances')
+                return redirect('control_panel')
         else:
             form = InsuranceForm()
 
@@ -174,7 +174,7 @@ def add_offer_view(request):
                 offer = form.save(commit=False)
                 offer.is_active = True
                 offer.save()
-                return redirect('offers')
+                return redirect('control_panel')
         else:
             form = DiscountForm()
 

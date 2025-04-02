@@ -77,8 +77,8 @@
         {% if user.is_staff %}
             <a href="{% url 'add_product_picture' product_id=product.id %}" class="btn btn-info">Add Picture</a>
             <a href="{% url 'edit_product' product_id=product.id %}" class="btn btn-warning">Edit Product</a>
+            <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="btn btn-danger">Delete</a>
         {% endif %}
-        <a href="{% url 'products' category_id=product.category.id %}" class="btn btn-danger">Back to Products</a>
     </div>
 
     <!-- Back to Products Link -->

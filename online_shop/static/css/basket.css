@@ -15,14 +15,14 @@ h2 {
 }
 
 /* List Item Styling */
-ul {
+.purchase-list {
     list-style-type: none;
     margin: 20px auto;
     padding: 0;
     width: 100%;
 }
 
-li {
+.purchase-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,12 +34,12 @@ li {
     transition: box-shadow 0.2s ease;
 }
 
-li:hover {
+.purchase-item:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* Product Details */
-li div.product-details {
+.purchase-item div.product-details {
     font-size: 16px;
     line-height: 1.4;
 }
@@ -65,14 +65,14 @@ div.quantity-buttons button:hover {
 }
 
 /* Navigation Links */
-a {
+.link {
     text-decoration: none;
     color: #007bff;
     font-size: 16px;
     transition: color 0.2s ease;
 }
 
-a:hover {
+.link:hover {
     color: #0056b3;
 }
 

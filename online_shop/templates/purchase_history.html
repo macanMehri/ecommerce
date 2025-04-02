@@ -12,14 +12,14 @@
     </h2>
 
     {% if purchases_history %}
-    <ul>
+    <ul class="purchase-list">
         {% for purchase_history in purchases_history %}
-        <li>
+        <li class="purchase-item">
             <div class="product-details">
-                <a href="{% url 'a_product' product_id=purchase_history.product.id %}"><strong>{{ purchase_history.product }}</strong></a><br>
+                <a class="link" href="{% url 'a_product' product_id=purchase_history.product.id %}"><strong>{{ purchase_history.product }}</strong></a><br>
                 <span>Count: {{ purchase_history.count }}</span><br>
-                <span>Cost: ${{ purchase_history.product.price }}</span><br>
-                <span>Total Paid: ${{ purchase_history.total_price }}</span>
+                <span>Cost: ${{ purchase_history.product.price|floatformat:2 }}</span><br>
+                <span>Total Paid: ${{ purchase_history.total_price|floatformat:2 }}</span>
             </div>
         </li>
         {% endfor %}
@@ -28,10 +28,10 @@
         <p style="text-align: center; color: #555;">No purchase history found.</p>
     {% endif %}
 
-    <span class="total-container">Grand Total Spent: ${{ total }}</span>
+    <span class="total-container">Grand Total Spent: ${{ total|floatformat:2 }}</span>
 
     <div class="footer-links">
-        <a href="{% url 'purchase_basket' %}">Current Basket</a>
+        <a class="link" href="{% url 'purchase_basket' %}">Current Basket</a>
     </div>
 </div>
 {% endblock %}

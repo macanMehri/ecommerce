@@ -51,7 +51,7 @@
         <div class="products-container">
             {% for product in products %}
                 <div class="product-item">
-                    <a href="{% url 'a_product' product_id=product.id %}">
+                    <a href="{% url 'a_product' product_id=product.id %}" class="product-link">
                         <div class="image-container">
                             {% if product.productpicture_set.exists %}
                                 {% with product.productpicture_set.first as first_picture %}
@@ -64,23 +64,29 @@
                                 <h3>{{ product.title }}</h3>
                             </div>
                         </div>
-                    </a>
-
-                    {% if user.is_staff %}
-                        <div class="actions">
-                            <a href="{% url 'edit_product' product_id=product.id %}" class="edit-button">Edit</a>
-                            <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="delete-button">Delete</a>
+                        <div class="product-info">
+                            <p>{{ product.description }}</p>
+                            <span class="rating">{{ product.rate|floatformat:0 }}★</span><br>
+                            {% if product.discount and product.discount.percentage != 0 %}
+                                <span class="price" style="text-decoration: line-through; color: gray;">${{ product.raw_price|floatformat:2 }}</span>
+                                <span class="price" style="color: green;">${{ product.price|floatformat:2 }}</span>
+                            {% else %}
+                                <span class="price">{{ product.price|floatformat:2 }}$</span>
+                            {% endif %}
                         </div>
-                    {% endif %}
-
-                    {% if user.is_authenticated %}
+                    </a>
+                <div class="actions">
+                    {% if user.is_authenticated and not user.is_staff %}
                         <form method="post" action="{% url 'add_to_basket' product_id=product.id %}" style="display:inline;">
                             {% csrf_token %}
-                            {% if not user.is_staff %}
-                                <button type="submit" class="add-to-basket-button">Add to Basket</button>
-                            {% endif %}
+                            <button type="submit" class="add-to-basket-button">Add to Basket</button>
                         </form>
                     {% endif %}
+                </div>
+                {% if user.is_staff %}
+                    <a href="{% url 'edit_product' product_id=product.id %}" class="edit-button">Edit</a>
+                    <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="delete-button">Delete</a>
+                {% endif %}
                 </div>
             {% endfor %}
         </div>

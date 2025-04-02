@@ -5,7 +5,7 @@ body {
     background-color: #f5e7d5;
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Make the body fill the viewport height */
+    min-height: 100vh;
 }
 
 header {
@@ -29,9 +29,9 @@ header a:hover {
 
 .container {
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: auto;
-    flex: 1; /* Allow this section to expand and take up space */
+    flex: 1;
 }
 
 footer {
