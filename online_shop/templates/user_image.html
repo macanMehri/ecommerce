@@ -1,0 +1,35 @@
+{% extends "master.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/add_product_picture.css' %}">
+
+<h2 class="form-title">Send Product Picture</h2>
+
+<form method="post" enctype="multipart/form-data" class="add-picture-form">
+    {% csrf_token %}
+
+    <!-- Display Form Errors (Global Errors) -->
+    {% if form.errors %}
+        <div class="form-errors">
+            <ul>
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    <!-- Form Fields -->
+    <div class="form-fields">
+        {{ form.as_p }}
+    </div>
+
+    <!-- Submit and Cancel Buttons -->
+    <div class="form-actions">
+        <button type="submit" class="btn-submit">Send Picture</button>
+        <a href="{% url 'a_product' product_id=product.id %}" class="btn-cancel">Cancel</a>
+    </div>
+</form>
+{% endblock %}

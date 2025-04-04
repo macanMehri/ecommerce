@@ -14,6 +14,13 @@
     .product-images {
         flex: 1;
     }
+
+    .users_images_container img {
+        width: 129px;
+        height: 85px;
+        border-radius: 5px;
+
+    }
     .image-container {
         margin-bottom: 10px;
         text-align: center;
@@ -98,6 +105,7 @@
     .btn-info {
         background-color: #17a2b8;
     }
+
     .btn-info:hover {
         background-color: #117a8b;
     }
@@ -113,4 +121,10 @@
     }
     .btn-danger:hover {
         background-color: #c82333;
+    }
+    .btn-send {
+        background-color: #06cc9a;
+    }
+    .btn-send:hover {
+        background-color: #03ad82;
     }

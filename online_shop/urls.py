@@ -6,7 +6,7 @@ from .views import (
     decrement_purchase, purchase_history_view, delete_category_view, delete_insurance_view,
     delete_product_view, add_review_view, add_product_picture_view, delete_product_picture_view,
     edit_category_view, edit_insurance_view, edit_product_view, all_products, control_panel,
-    add_offer_view, offers_view, delete_offer_view, edit_offer_view
+    add_offer_view, offers_view, delete_offer_view, edit_offer_view, send_image_of_product
 )
 
 
@@ -42,5 +42,6 @@ urlpatterns = [
     path('edit_product/<int:product_id>/', edit_product_view, name='edit_product'),
     path('edit_category/<int:category_id>/', edit_category_view, name='edit_category'),
     path('edit_insurance/<int:insurance_id>/', edit_insurance_view, name='edit_insurance'),
-    path('add_offer/', add_offer_view, name='add_offer')
+    path('add_offer/', add_offer_view, name='add_offer'),
+    path('user_image/<int:product_id>', send_image_of_product, name='user_image'),
 ]

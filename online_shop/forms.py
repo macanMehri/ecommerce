@@ -37,3 +37,9 @@ class DiscountForm(forms.ModelForm):
     class Meta:
         model = Discount
         fields = ['title', 'percentage', 'description']
+
+
+class UserImageForm(forms.ModelForm):
+    class Meta:
+        model = um.UsersImage
+        fields = ['image']

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from online_shop.admin import BaseAdmin
-from .models import UsersReview, City, Province, ProvinceCities, Address, UserAddress
+from .models import UsersReview, City, Province, ProvinceCities, Address, UserAddress, UsersImage
 
 
 @admin.register(UsersReview)
@@ -122,3 +122,23 @@ class AdminUserAddress(BaseAdmin):
     ordering = ('pk',)
 
     search_fields = ('id', 'user__id', 'user__name')
+
+
+@admin.register(UsersImage)
+class AdminUsersImage(BaseAdmin):
+    list_display = (
+        'id',
+        'user',
+        'product',
+        'image',
+        'is_active',
+        'created_date',
+        'updated_date',
+    )
+    list_display_links = ('id', 'user',)
+    list_filter = ('user', 'product', 'is_active', 'created_date', 'updated_date')
+    list_editable = ('is_active',)
+    # Order by primary key
+    ordering = ('pk',)
+
+    search_fields = ('id', 'user__id', 'user__name', 'product__id', 'product__title')

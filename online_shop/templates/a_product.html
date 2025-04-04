@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{% static 'css/a_product.css' %}">
 
 <div class="product-page">
+
     <h2>{{ product.title }}</h2>
     <div class="product-details">
         <!-- Images Section -->
@@ -11,7 +12,7 @@
             {% if images %}
                 {% for image in images %}
                     <div class="image-container">
-                        <img src="{{ image.image.url }}" alt="Product Image">
+                        <a href="{{ image.image.url }}"><img src="{{ image.image.url }}" alt="Product Image"></a>
                         {% if user.is_staff %}
                             <a href="{% url 'confirm_product_picture_delete' product_picture_id=image.id %}" class="delete-link">Delete Image</a>
                         {% endif %}
@@ -19,7 +20,7 @@
                 {% endfor %}
             {% else %}
                 <div class="image-container">
-                    <img src="{{ product.category.image.url }}" alt="Category Image">
+                    <a href="{{ product.category.image.url }}"><img src="{{ product.category.image.url }}" alt="Category Image"></a>
                 </div>
             {% endif %}
         </div>
@@ -51,6 +52,14 @@
         </form>
     {% endif %}
 
+    <div class="users_images_container">
+        {% if users_sent_images %}
+        <h3>Users sent pictures of the {{ product.title }}</h3>
+            {% for image in users_sent_images %}
+                    <a href="{{ image.image.url }}"><img src="{{ image.image.url }}" alt="Product Image"></a>
+            {% endfor %}
+        {% endif %}
+    </div>
     <!-- Reviews Section -->
     <div class="reviews-section">
         <h3>Reviews</h3>
@@ -73,6 +82,7 @@
     <div class="action-buttons">
         {% if user.is_authenticated and not user.is_staff %}
             <a href="{% url 'add_review' product_id=product.id %}" class="btn btn-secondary">Add Review</a>
+            <a href="{% url 'user_image' product_id=product.id %}" class="btn btn-send">Send Image</a>
         {% endif %}
         {% if user.is_staff %}
             <a href="{% url 'add_product_picture' product_id=product.id %}" class="btn btn-info">Add Picture</a>
@@ -80,7 +90,14 @@
             <a href="{% url 'confirm_product_delete' product_id=product.id %}" class="btn btn-danger">Delete</a>
         {% endif %}
     </div>
-
+    {% if messages %}
+    <br>
+        {% for message in messages %}
+        <div class="error-message" style="color:red; font-size:16px;">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endif %}
     <!-- Back to Products Link -->
 </div>
 {% endblock %}

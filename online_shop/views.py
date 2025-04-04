@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Product, Category, Insurance, PurchaseBasket, ProductPicture, Discount
 from .forms import (
-    ProductForm, CategoryForm, InsuranceForm, UsersReviewForm, ProductPictureForm, DiscountForm
+    ProductForm, CategoryForm, InsuranceForm, UsersReviewForm, ProductPictureForm, DiscountForm, UserImageForm
 )
 import users.models as um
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.db.models import F, Q
+from django.contrib import messages
 
 
 def index_view(request):
@@ -270,6 +271,7 @@ def a_product_view(request, product_id):
 
     product.popularity = F('popularity') + 1
     product.save()
+    users_sent_images = um.UsersImage.objects.filter(product=product, is_active=True)
 
     images = ProductPicture.objects.filter(product=product, is_active=True)
 
@@ -277,7 +279,8 @@ def a_product_view(request, product_id):
 
     return render(
         request, 'a_product.html', {
-            'product': product, 'images': images, 'reviews': reviews, 'number_of_reviews': len(reviews)
+            'product': product, 'images': images, 'reviews': reviews, 'number_of_reviews': len(reviews),
+            'users_sent_images': users_sent_images
         }
     )
 
@@ -432,3 +435,31 @@ def edit_insurance_view(request, insurance_id):
             form = InsuranceForm(instance=insurance)
 
         return render(request, 'edit_insurance.html', {'form': form})
+
+
+@login_required
+def send_image_of_product(request, product_id):
+    if request.user.is_staff:
+        return redirect('a_product', product_id=product_id)
+
+    product = get_object_or_404(Product, id=product_id)
+    already_sent = um.UsersImage.objects.filter(product=product, user=request.user, is_active=True)
+
+    if already_sent:
+        messages.error(
+            request,
+            "You've already sent a picture of the product!"
+        )
+        return redirect('a_product', product_id=product_id)
+
+    if request.method == 'POST':
+        form = UserImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            user_image = form.save(commit=False)
+            user_image.user = request.user
+            user_image.product = product
+            user_image.save()
+            return redirect('a_product', product_id=product_id)
+    else:
+        form = UserImageForm()
+    return render(request, 'user_image.html', {'form': form, 'product': product})
