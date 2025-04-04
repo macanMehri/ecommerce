@@ -98,4 +98,4 @@ We are looking to add new options to this website.
 
 ## DEMO
 
-[![Watch the video](https://github.com/user-attachments/assets/b929b78d-e6c5-40eb-90ff-0fb73a7a78e5)
+![Demo video](https://github.com/user-attachments/assets/b929b78d-e6c5-40eb-90ff-0fb73a7a78e5)
