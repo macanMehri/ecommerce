@@ -15,12 +15,23 @@
         flex: 1;
     }
 
-    .users_images_container img {
-        width: 129px;
-        height: 85px;
-        border-radius: 5px;
+.users_images_container {
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 10px 0;
+}
 
-    }
+.users_images_container a {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.users_images_container img {
+    width: 129px;
+    height: 85px;
+    border-radius: 5px;
+    object-fit: cover;
+}
     .image-container {
         margin-bottom: 10px;
         text-align: center;

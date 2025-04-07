@@ -52,14 +52,16 @@
         </form>
     {% endif %}
 
+{% if users_sent_images %}
+    <h3>Users sent pictures of the {{ product.title }}</h3>
     <div class="users_images_container">
-        {% if users_sent_images %}
-        <h3>Users sent pictures of the {{ product.title }}</h3>
-            {% for image in users_sent_images %}
-                    <a href="{{ image.image.url }}"><img src="{{ image.image.url }}" alt="Product Image"></a>
-            {% endfor %}
-        {% endif %}
+        {% for image in users_sent_images %}
+            <a href="{{ image.image.url }}">
+                <img src="{{ image.image.url }}" alt="Product Image">
+            </a>
+        {% endfor %}
     </div>
+{% endif %}
     <!-- Reviews Section -->
     <div class="reviews-section">
         <h3>Reviews</h3>

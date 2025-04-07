@@ -19,14 +19,15 @@ h2, h3 {
 /* Chat Form */
 form {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
 }
 
 textarea {
     width: 95%;
+    height: 20px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 0 0 0 8px;
     padding: 10px;
     font-size: 16px;
     resize: none;
@@ -34,11 +35,12 @@ textarea {
 
 /* Send Button */
 button {
+    width: 40px;
     background-color: #007bff;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 8px;
+    margin-left: -10px;
+    border-radius: 0 0 8px 0;
     font-size: 16px;
     cursor: pointer;
     transition: background 0.3s ease;
@@ -75,20 +77,20 @@ button:hover {
     display: block;
 }
 
-/* Messages Wrapper */
+
 .chat-messages {
     display: flex;
     flex-direction: column;
     gap: 8px;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 8px 8px 0 0;
     max-height: 400px;
     overflow-y: auto;
     border: 1px solid #ccc;
     background: #f9f9f9;
 }
 
-/* Error Messages */
+
 .error-message {
     color: red;
     text-align: center;
@@ -96,7 +98,7 @@ button:hover {
     font-size: 14px;
 }
 
-/* Responsive Design */
+
 @media (max-width: 768px) {
     .container {
         width: 90%;

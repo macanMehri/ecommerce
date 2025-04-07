@@ -96,3 +96,6 @@ We are looking to add new options to this website.
 
 ![Screenshot (9)](https://github.com/user-attachments/assets/dd657ee7-8473-4654-98b0-63224e0f032d)
 
+## DEMO
+
+![Demo video](https://github.com/user-attachments/assets/b929b78d-e6c5-40eb-90ff-0fb73a7a78e5)

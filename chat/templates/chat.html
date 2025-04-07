@@ -3,6 +3,7 @@
 {% block content %}
 {% load static %}
 <link rel="stylesheet"  href="{% static 'css/chat.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <div class="container">
     <h3>Messages</h3>
@@ -32,7 +33,7 @@
         <form method="POST">
             {% csrf_token %}
             <textarea name="sent_text" rows="2" required placeholder="Write your message..."></textarea>
-            <button type="submit">Send</button>
+            <button type="submit" title="send"><i class="bi bi-arrow-right"></i></button>
         </form>
     </div>
 {% endblock %}
