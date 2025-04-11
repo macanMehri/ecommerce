@@ -1,3 +1,4 @@
 ecommerce/local_settings.py
 /Media
 /staticfiles
+online_shop/static/images/
