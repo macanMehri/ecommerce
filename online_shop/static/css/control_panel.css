@@ -7,12 +7,13 @@
 
 .control-panel h2 {
     font-size: 28px;
-    color: #4f0d1f;
+    color: #4A4947;
     margin-bottom: 30px;
     font-weight: bold;
 }
 
 .panel-links {
+    width: 500px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -21,38 +22,19 @@
 
 .panel-link {
     padding: 12px 25px;
-    background: linear-gradient(145deg, #7a2a47, #d86c79); /* Soft burgundy to peachy red gradient */
-    color: white;
+    color: #705C53;
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
-    border-radius: 30px; /* Rounded corners */
-    width: 80%;
-    max-width: 350px;
+    width: 100%;
+    border-radius: 5px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Soft shadow */
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .panel-link:hover {
-    background: linear-gradient(145deg, #d86c79, #7a2a47); /* Reversed gradient on hover */
-    transform: scale(1.05); /* Slight zoom effect */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-.back-to-home {
-    display: inline-block;
-    margin-top: 30px;
-    padding: 12px 25px;
-    background-color: #7a2a47; /* Rich burgundy color */
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 30px; /* Rounded corners */
-    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
-}
-
-.back-to-home:hover {
-    background-color: #d86c79; /* Peachy red color */
-    transform: scale(1.05); /* Slight zoom effect */
-}

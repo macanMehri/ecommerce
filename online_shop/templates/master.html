@@ -8,16 +8,20 @@
     <title>{% block title %}E-commerce{% endblock %}</title>
 </head>
 <body>
+<a id="top"></a>
+
     <header>
-        <div>
-            <h1><a href="{% url 'index' %}" style="color: white; text-decoration: none;">E-commerce</a></h1>
+        <div class="title">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'images/logo.jpg' %}" alt="logo" style="width: 220px; height: 95px; object-fit: cover;">
+            </a>
         </div>
         <nav>
             <a href="{% url 'index' %}">Home</a>
             <a href="{% url 'all_products' %}">Shop</a>
             <a href="{% url 'categories' %}">Categories</a>
             {% if user.is_authenticated and not user.is_staff %}
-                <a href="{% url 'purchase_basket' %}">My Basket</a>
+                <a href="{% url 'purchase_basket' %}">Bag</a>
             {% endif %}
             {% if user.is_authenticated %}
                 <a href="{% url 'dashboard' %}">Dashboard</a>
@@ -36,18 +40,24 @@
             {% else %}
                 <a href="{% url 'login' %}">Contact Us</a>
                 <a href="{% url 'login' %}" class="login-button">Login</a>
-                <a href="{% url 'signup' %}" class="signup-button">Sign up</a>
             {% endif %}
         </nav>
+
     </header>
 
     <main class="container">
         {% block content %}
         {% endblock %}
     </main>
-
+    <div class="go-top">
+        <a href="#top" title="Back To Top">
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="25" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5m-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5"/>
+</svg>
+        </a>
+    </div>
     <footer>
-        <p>&copy; 2024 E-commerce Website. All Rights Reserved.</p>
+        <p>&copy; 2025 E-commerce Website. All Rights Reserved.</p>
     </footer>
 </body>
 </html>

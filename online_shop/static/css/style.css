@@ -1,9 +1,4 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    line-height: 1.6;
-}
+
 
 .hero {
     background: url('{% static "images/hero-bg.jpg" %}') no-repeat center center/cover;

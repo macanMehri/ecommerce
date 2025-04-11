@@ -18,7 +18,6 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px 10px 0 0;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     margin-bottom: 15px;
 }
 
@@ -30,19 +29,17 @@
 }
 
 .product-info {
-    max-width: 150px;
-    max-height: 150px;
-    background-color: #fff;
+    height: 100px;
+    background-color: white;
     padding: 5px;
     color: #333;
-    border-radius: 0 0 10px 10px;
     text-align: center;
     font-size: 14px;
     line-height: 1.5;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-top: -15px;
     text-align: left;
+    border-bottom: 1px solid  #a8a8a8;
 }
 
 .product-link {
@@ -63,7 +60,7 @@
 .product-info .price {
     font-weight: bold;
     font-size: 16px;
-    color: #28a745;
+    color: #124a12;
 }
 
 .product-info .rating {
@@ -96,7 +93,7 @@
 
 .overlay h3 {
     color: white;
-    font-size: 16px; /* Adjusted font size for smaller images */
+    font-size: 12px;
     text-transform: uppercase;
     margin: 0;
 }
@@ -106,6 +103,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
+    border-bottom: 1px solid #a8a8a8;
 }
 
 .add-to-basket-button,
@@ -119,30 +117,33 @@
     display: inline-block;
     border: none;
     cursor: pointer;
+    margin-bottom: 8px;
 }
 
 .add-to-basket-button {
-    background-color: #28a745;
+    font-size: 12px;
+    background-color: white;
+    color: green;
 }
 
 .add-to-basket-button:hover {
-    background-color: #218838;
+    color: #175e17;
 }
 
 .delete-button {
-    background-color: #d9534f;
+    color: red;
 }
 
 .delete-button:hover {
-    background-color: #c9302c;
+    color: #c9302c;
 }
 
 .edit-button {
-    background-color: #007bff;
+    color: blue;
 }
 
 .edit-button:hover {
-    background-color: #0056b3;
+    color: #010d52;
 }
 
 h2 {
@@ -160,40 +161,39 @@ h2 {
     display: inline;
     justify-content: center;
     align-items: center;
-    max-width: 600px;
-
 }
 
 .search-input {
+    margin-top: 20px;
     width: 100%;
     max-width: 400px;
     padding: 10px;
     font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px 0 0 5px;
+    border-bottom: 2px solid #ccc;
+    border-top: none;
+    border-left: none;
+    border-right: none;
     outline: none;
     transition: all 0.3s ease;
 }
 
-.search-input:focus {
-    border-color: #007bff;
-}
 
 .search-button {
     padding: 10px 20px;
     margin-left: -5px;
     font-size: 14px;
-    background-color: #007bff;
-    color: white;
-    border: 2px solid #007bff;
+    background-color: white;
+    color: #ccc;
+    border: 2px solid #ccc;
     border-left: none;
+    border-right: none;
+    border-top: none;
     cursor: pointer;
-    border-radius: 0 5px 5px 0;
     transition: background-color 0.3s ease;
 }
 
 .search-button:hover {
-    background-color: #0056b3;
+    color: black;
 }
 
 .filter-section {
@@ -201,69 +201,66 @@ h2 {
     justify-content: center;
     align-items: center;
     gap: 30px;
-    background-color: #f5ebdf;
-    color: #000000;
+    background-color: white;
+    color: black;
     padding: 15px;
-    box-shadow: 0px 5px 5px 0px #403f3e;
-    border-right: 0px solid #ddd;
-    border-radius: 50px 0px 50px 0;
+    border-bottom: 2px solid #ccc;
     overflow-y: auto;
     width: fit-content;
     margin: 0 auto;
 }
 
-.filter-section h3 {
-    font-size: 1.5em;
-    margin-right: 20px;
-}
-
 .filter-section label {
-    font-weight: bold;
+    font-size: 12px;
     margin-right: 10px;
 }
 
 .filter-section input,
-.filter-section select,
-.filter-section button {
+.filter-section select, {
     width: auto;
     padding: 5px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 14px;
+    border-bottom: 2px solid #ddd;
+    border-left: none;
+    border-right: none;
+    border-top: 2px solid #ddd;
+    font-size: 12px;
     margin-right: 20px;
     margin-bottom: 5px;
     margin-top: 15px;
 }
 
-.filter-section .submit-box {
-    display: flex;
-    align-items: center;
-    margin-left: 205px;
-}
-.filter-section .reset {
-    background-color: #1e1836;
-}
-.filter-section .reset:hover {
-    background-color: #141024;
-}
 .filter-section button {
-    background-color: #4f0d1f;
-    color: white;
+    width: 92px;
     border: none;
     cursor: pointer;
-    border-radius: 20px;
     align: center;
-    width: 200px;
+    margin: 10px;
+}
+.filter-section .submit-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.filter-section .reset {
+    background-color: white;
+    color: red;
+}
+.filter-section .reset:hover {
+    color: #9c0303;
 }
 
-.filter-section button:hover {
-    background-color: #3b0917;
+.filter-section .submit {
+    color: green;
+    background-color: white;
+}
+.filter-section .submit:hover {
+    color: #175e17;
+    background-color: white;
 }
 .custom-checkbox input[type="checkbox"] {
     display: none;
 }
 .custom-checkbox {
-    margin-left: 305px;
     margin-bottom: 5px;
     margin-top: 20px;
     display: flex;
@@ -272,6 +269,7 @@ h2 {
     font-family: Arial, sans-serif;
     font-size: 14px;
     padding-bottom: 0;
+    justify-content: center;
 }
 
 .custom-checkbox label {
