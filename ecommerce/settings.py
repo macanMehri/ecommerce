@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'online_shop.apps.OnlineShopConfig',
     'chat.apps.ChatConfig',
+    'charts.apps.ChartsConfig',
 ]
 
 MIDDLEWARE = [

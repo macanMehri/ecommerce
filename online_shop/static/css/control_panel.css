@@ -1,19 +1,13 @@
-.control-panel {
-    padding: 30px;
-    max-width: 1200px;
-    margin: auto;
-    text-align: center;
-}
 
-.control-panel h2 {
+h2 {
     font-size: 28px;
     color: #4A4947;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     font-weight: bold;
 }
 
 .panel-links {
-    width: 500px;
+    width: 250px;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -32,9 +26,20 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+h3 {
+    color: #543A14;
+}
 
 .panel-link:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
+.control-panel {
+    display: flex;
+    text-align: center;
+}
 
+.view, .add {
+    padding: 20px;
+    margin: 50px;
+}

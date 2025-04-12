@@ -30,6 +30,11 @@ class BaseModel(models.Model):
     def __str__(self):
         raise NotImplementedError('Please override the method!')
 
+    @property
+    def updated_month(self):
+        """Useful in data analysis"""
+        return self.updated_date.month
+
 
 class Category(BaseModel):
     title = models.CharField(max_length=255, blank=False, verbose_name='Title')

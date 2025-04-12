@@ -2,21 +2,42 @@
 {% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/control_panel.css' %}">
-
+<h2 align="center">{{ user.username }}'s Control Panel</h2>
 <section class="control-panel">
-    <h2>{{ user.username }}'s Control Panel</h2>
 
-    {% if user.is_staff %}
+    <div class="view">
+        <h3>View</h3>
         <div class="panel-links">
-            <a href="{% url 'categories' %}" class="panel-link">View All Categories</a>
-            <a href="{% url 'add_category' %}" class="panel-link">Add New Category</a>
-            <a href="{% url 'insurances' %}" class="panel-link">View All Insurances</a>
-            <a href="{% url 'add_insurance' %}" class="panel-link">Add New Insurance</a>
-            <a href="{% url 'all_products' %}" class="panel-link">View All Products</a>
-            <a href="{% url 'add_product' %}" class="panel-link">Add New Product</a>
-            <a href="{% url 'offers' %}" class="panel-link">View All Offers</a>
-            <a href="{% url 'add_offer' %}" class="panel-link">Add New Offer</a>
+            <a href="{% url 'categories' %}" class="panel-link">Categories</a>
+            <a href="{% url 'insurances' %}" class="panel-link">Insurances</a>
+            <a href="{% url 'all_products' %}" class="panel-link">Products</a>
+            <a href="{% url 'offers' %}" class="panel-link">Offers</a>
+            <!--
+            {% if user.is_superuser %}
+                <a href="{% url 'total_purchase' %}" class="panel-link">Charts Of Purchases</a>
+                <a href="{% url 'total_amount' %}" class="panel-link">Charts Of Sells</a>
+            {% endif %}
+            -->
         </div>
-    {% endif %}
+    </div>
+
+    <div class="add">
+        <h3>Add</h3>
+        <div class="panel-links">
+            <a href="{% url 'add_category' %}" class="panel-link">Category</a>
+            <a href="{% url 'add_insurance' %}" class="panel-link">Insurance</a>
+            <a href="{% url 'add_product' %}" class="panel-link">Product</a>
+            <a href="{% url 'add_offer' %}" class="panel-link">Offer</a>
+        </div>
+    </div>
 </section>
+{% if user.is_superuser %}
+<h3 align="center">Charts</h3>
+<div class="chart" align="center">
+    <div class="panel-links">
+        <a href="{% url 'total_purchase' %}" class="panel-link">Purchases</a>
+        <a href="{% url 'total_amount' %}" class="panel-link">Sells</a>
+    </div>
+</div>
+{% endif %}
 {% endblock %}
