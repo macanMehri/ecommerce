@@ -97,9 +97,9 @@ We are looking to add new options to this website.
 
 ## Screenshots
 
-![Screenshot (8)](https://github.com/user-attachments/assets/a228264c-18f1-492c-bd25-a2a191ac331a)
+![Image](https://github.com/user-attachments/assets/76f57b47-192a-42b0-804f-83db8fe9916a)
 
-![Screenshot (9)](https://github.com/user-attachments/assets/dd657ee7-8473-4654-98b0-63224e0f032d)
+![Image](https://github.com/user-attachments/assets/b0b720e9-1d3b-4701-8625-61146a28c8a9)
 
 ## DEMO
 
