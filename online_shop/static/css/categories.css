@@ -67,7 +67,6 @@
 .edit-button,
 .delete-button {
     padding: 5px 15px;
-    color: white;
     text-decoration: none;
     border-radius: 5px;
     font-size: 14px;
@@ -75,19 +74,19 @@
 }
 
 .edit-button {
-    background-color: #007bff;
+    color: blue;
 }
 
 .delete-button {
-    background-color: #d9534f;
+    color: red;
 }
 
 .edit-button:hover {
-    background-color: #0056b3;
+    color: #010d52;
 }
 
 .delete-button:hover {
-    background-color: #c9302c;
+    color: #c9302c;
 }
 
 .back-home {

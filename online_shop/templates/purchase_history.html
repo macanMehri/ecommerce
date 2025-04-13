@@ -16,10 +16,11 @@
         {% for purchase_history in purchases_history %}
         <li class="purchase-item">
             <div class="product-details">
-                <a class="link" href="{% url 'a_product' product_id=purchase_history.product.id %}"><strong>{{ purchase_history.product }}</strong></a><br>
+                <a class="link" href="{% url 'a_product' product_id=purchase_history.product.id %}"><strong>{{ purchase_history.product }}</strong></a><br><br>
                 <span>Count: {{ purchase_history.count }}</span><br>
                 <span>Cost: ${{ purchase_history.product.price|floatformat:2 }}</span><br>
-                <span>Total Paid: ${{ purchase_history.total_price|floatformat:2 }}</span>
+                <span>Total Paid: ${{ purchase_history.total_price|floatformat:2 }}</span><br><br>
+                <span>Time: {{ purchase_history.updated_date }}</span>
             </div>
         </li>
         {% endfor %}
@@ -28,10 +29,14 @@
         <p style="text-align: center; color: #555;">No purchase history found.</p>
     {% endif %}
 
-    <span class="total-container">Grand Total Spent: ${{ total|floatformat:2 }}</span>
+    <span class="total-container">Total Spent: ${{ total|floatformat:2 }}</span>
 
-    <div class="footer-links">
-        <a class="link" href="{% url 'purchase_basket' %}">Current Basket</a>
+    <div class="footer-links" style="justify-content:center">
+        <a class="link" href="{% url 'purchase_basket' %}" title="My Bag">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bag" viewBox="0 0 16 16">
+              <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+            </svg>
+        </a>
     </div>
 </div>
 {% endblock %}

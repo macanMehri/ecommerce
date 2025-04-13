@@ -27,9 +27,8 @@ h2 {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
     margin: 10px 0;
-    border-radius: 8px;
     background: #ffffff;
     transition: box-shadow 0.2s ease;
 }
@@ -50,21 +49,27 @@ div.quantity-buttons form {
 }
 
 div.quantity-buttons button {
-    padding: 8px 15px;
     margin: 0 4px;
-    border: none;
-    color: #fff;
-    background-color: #007bff;
-    border-radius: 4px;
+    background-color: white;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    border: none;
 }
 
-div.quantity-buttons button:hover {
-    background-color: #0056b3;
+.add {
+    color: green;
 }
 
-/* Navigation Links */
+.minus {
+    color: red;
+}
+.add:hover {
+    color: #175e17;
+}
+
+.minus:hover {
+    color: #c9302c;
+}
+
 .link {
     text-decoration: none;
     color: #007bff;
@@ -90,6 +95,8 @@ div.quantity-buttons button:hover {
     color: #333;
     text-align: center;
     margin: 20px 0;
+    display: flex;
+    justify-content: center;
 }
 
 /* Styling for Alerts (Errors) */

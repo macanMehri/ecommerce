@@ -1,11 +1,13 @@
+
 .product-page {
-        max-width: 800px;
-        margin: auto;
-        padding: 20px;
-        background: #fff;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-    }
+    display: block;
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    border-left: solid 1px #ccc;
+    border-right: solid 1px #ccc;
+    background-color: #fff;
+}
     .product-details {
         display: flex;
         gap: 20px;
@@ -52,6 +54,7 @@
     }
     .product-info {
         flex: 2;
+        direction: ltr;
     }
     .product-info p {
         margin: 5px 0;
@@ -60,15 +63,16 @@
         margin: 20px 0;
     }
 
-    .btn-primary {
-        background-color: #28a745;
-        border: none;
-    }
 
-    .btn-primary:hover{
-        background-color: #429945;
-    }
+.btn-primary {
+    background: white;
+    color: green;
+    border: none;
+}
 
+.btn-primary:hover {
+    color: #175e17;
+}
     .reviews-section {
         margin-top: 20px;
     }
@@ -91,51 +95,52 @@
     .action-buttons {
         margin-top: 20px;
         display: flex;
-        flex-direction: row; /* Align buttons in a row */
-        flex-wrap: wrap; /* Allow buttons to wrap if necessary */
-        gap: 10px; /* Add space between buttons */
-        justify-content: flex-start; /* Align buttons to the left */
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
     }
 
     .btn {
-        padding: 6px 15px;
+        padding: 3px 5px;
         text-decoration: none;
-        border-radius: 5px;
         font-size: 1rem;
         text-align: center;
-        color: white;
         display: inline-block;
         cursor: pointer;
     }
     .btn-secondary {
-        background-color: #007bff;
+        color: #007bff;
     }
     .btn-secondary:hover {
-        background-color: #0056b3;
+        color: #0056b3;
     }
     .btn-info {
-        background-color: #17a2b8;
+        color: #17a2b8;
     }
 
     .btn-info:hover {
-        background-color: #117a8b;
+        color: #117a8b;
     }
-    .btn-warning {
-        background-color: #ffc107;
-        color: black;
-    }
-    .btn-warning:hover {
-        background-color: #e0a800;
-    }
-    .btn-danger {
-        background-color: #dc3545;
-    }
-    .btn-danger:hover {
-        background-color: #c82333;
-    }
+.btn-danger {
+    color: red;
+}
+
+.btn-danger :hover {
+    color: #c9302c;
+}
+
+.btn-warning {
+    color: blue;
+}
+
+.btn-warning:hover {
+    color: #010d52;
+}
+
     .btn-send {
-        background-color: #06cc9a;
+        color: #06cc9a;
     }
     .btn-send:hover {
-        background-color: #03ad82;
+        color: #03ad82;
     }

@@ -60,17 +60,22 @@ Customers
 - Create an account and login.
 - Change username, password, and email.
 - Add review to products.
+- Send picture of received product.
 - Search for products and categories.
 - Add product to your basket.
 - Check your receipt and change the total number of orders.
-- See your previous purchases and the total amount spent.
+- See your previous purchases and the total amount that has been spent.
 - Add address with different titles. for example : Home - Office
+- Enable to send text messages to the support team.
 
 Owner
 - Manage users and staff.
 - Make a user to be staff or remove it.
 - Check and manage reviews and active or deactivate them.
-- Have full permission
+- Check and manage sent pictures of products and active or deactivate them.
+- Enable to see charts of purchases.
+- Have full permission.
+- Have availability as much as staff.
 
 Staff
 - Add, edit, or delete a product.

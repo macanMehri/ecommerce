@@ -4,8 +4,9 @@
     padding: 20px;
     max-width: 500px;
     width: 90%;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+
     text-align: center;
     margin: auto;
     margin-top: 50px;
@@ -27,19 +28,16 @@
 
 /* Buttons */
 .delete-confirmation-container button {
-    background-color: #dc3545; /* Red for delete */
-    color: white;
+    color: red;
+    background-color: white;
     border: none;
-    padding: 8px 20px;
     font-size: 1rem;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
     margin-bottom: 25px;
 }
 
 .delete-confirmation-container button:hover {
-    background-color: #c82333; /* Darker red for hover */
+    color: #c9302c;
 }
 
 /* Cancel Link */
