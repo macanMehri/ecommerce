@@ -83,6 +83,7 @@ Staff
 - Add, edit, or delete a category.
 - Have a control panel for ease of use.
 - Assign picture to products or delete them.
+- Connect to a user and answer to their messages.
 ## Tech Stack
 
 **Client:** HTML, CSS, JS
