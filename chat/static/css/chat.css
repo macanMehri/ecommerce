@@ -1,13 +1,10 @@
-/* General Styling */
 
-/* Container */
 .container {
     width: 80%;
     max-width: 600px;
     background: white;
     padding: 20px;
     border-radius: 12px;
-
 }
 
 /* Heading */
@@ -36,7 +33,7 @@ textarea {
 /* Send Button */
 button {
     width: 40px;
-    background-color: #007bff;
+    background-color: #98D8EF;
     color: white;
     border: none;
     margin-left: -10px;
@@ -47,32 +44,32 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #8cc8de;
 }
 
-/* Messages Styling */
 .sent_message-box {
-    background-color: #0446c9;
+    background-color: #4A4947;
     color: white;
     padding: 12px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    width: fit-content;
-    max-width: 80%;
-    font-size: 14px;
-    word-wrap: break-word;
-}
-.received_message-box {
-    background-color: #b03c02;
-    padding: 12px;
-    color: white;
-    border-radius: 10px;
+    border-radius: 20px 20px 0 20px;
     margin-bottom: 10px;
     width: fit-content;
     max-width: 80%;
     font-size: 14px;
     word-wrap: break-word;
     margin-left: auto;
+}
+.received_message-box {
+    background-color: #D8D2C2;
+    padding: 12px;
+    color: black;
+    border-radius: 20px 20px 20px 0;
+    margin-bottom: 10px;
+    width: fit-content;
+    max-width: 80%;
+    font-size: 14px;
+    word-wrap: break-word;
+    margin-right: auto;
     text-align: right;
     display: block;
 }
@@ -83,11 +80,11 @@ button:hover {
     flex-direction: column;
     gap: 8px;
     padding: 10px;
-    border-radius: 8px 8px 0 0;
+    border-radius: 5px 5px 0 0;
     max-height: 400px;
     overflow-y: auto;
     border: 1px solid #ccc;
-    background: #f9f9f9;
+    background: white;
 }
 
 

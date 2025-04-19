@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 <h2 class="form-title">Add Category</h2>
-<link rel="stylesheet" href="{% static 'css/add_category.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
-<form method="post" enctype="multipart/form-data" class="styled-form">
+<form method="post" enctype="multipart/form-data" class="form">
     {% csrf_token %}
 
     <!-- Display Form Errors -->
@@ -24,9 +24,9 @@
     {{ form.as_p }}
 
     <!-- Action Buttons -->
-    <div class="form-buttons">
-        <button type="submit" class="btn-submit">Add Category</button>
-        <a href="{% url 'control_panel' %}" class="btn-cancel">Cancel</a>
+    <div class="btn">
+        <button type="submit">Add Category</button>
+        <a href="{% url 'control_panel' %}" class="cancel">Cancel</a>
     </div>
 </form>
 {% endblock %}

@@ -1,11 +1,11 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/add_product_picture.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
 <h2 class="form-title">Send Product Picture</h2>
 
-<form method="post" enctype="multipart/form-data" class="add-picture-form">
+<form method="post" enctype="multipart/form-data" class="form">
     {% csrf_token %}
 
     <!-- Display Form Errors (Global Errors) -->
@@ -27,9 +27,9 @@
     </div>
 
     <!-- Submit and Cancel Buttons -->
-    <div class="form-actions">
-        <button type="submit" class="btn-submit">Send Picture</button>
-        <a href="{% url 'a_product' product_id=product.id %}" class="btn-cancel">Cancel</a>
+    <div class="btn">
+        <button type="submit">Send Picture</button>
+        <a href="{% url 'a_product' product_id=product.id %}" class="cancel">Cancel</a>
     </div>
 </form>
 {% endblock %}

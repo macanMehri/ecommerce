@@ -3,11 +3,11 @@
 {% block title %}Edit Category{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/edit_category.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
-<h1 class="page-title">Edit Category</h1>
+<h2 class="page-title">Edit Category</h2>
 
-<form method="post" enctype="multipart/form-data" class="edit-category-form">
+<form method="post" enctype="multipart/form-data" class="form">
     {% csrf_token %}
 
     <!-- Display Form Errors -->
@@ -30,9 +30,9 @@
     </div>
 
     <!-- Submit Button -->
-    <div class="form-actions">
-        <button type="submit" class="btn-submit">Save Changes</button>
-        <a href="{% url 'categories' %}" class="btn-cancel">Cancel</a>
+    <div class="btn">
+        <button type="submit">Save Changes</button>
+        <a href="{% url 'categories' %}" class="cancel">Cancel</a>
     </div>
 </form>
 {% endblock %}

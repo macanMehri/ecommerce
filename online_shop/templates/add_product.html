@@ -1,9 +1,9 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/add_product.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
-<div class="form-container">
+<div class="form">
     <h2>Add Product</h2>
 
     <form method="post" class="product-form">
@@ -26,9 +26,9 @@
         {{ form.as_p }}
 
         <!-- Form Actions -->
-        <div class="form-actions">
-            <button type="submit" class="btn submit-btn">Add Product</button>
-            <a href="{% url 'control_panel' %}" class="btn cancel-btn">Cancel</a>
+        <div class="btn">
+            <button type="submit">Add Product</button>
+            <a href="{% url 'control_panel' %}" class="cancel">Cancel</a>
         </div>
     </form>
 </div>

@@ -3,11 +3,11 @@
 {% block title %}Edit Insurance{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/edit_insurance.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
 <h1 class="page-title">Edit Insurance</h1>
 
-<form method="post" class="edit-insurance-form">
+<form method="post" class="form">
     {% csrf_token %}
 
     <!-- Form Errors -->
@@ -30,9 +30,9 @@
     </div>
 
     <!-- Action Buttons -->
-    <div class="form-actions">
-        <button type="submit" class="btn-submit">Save Changes</button>
-        <a href="{% url 'insurances' %}" class="btn-cancel">Cancel</a>
+    <div class="btn">
+        <button type="submit">Save Changes</button>
+        <a href="{% url 'insurances' %}" class="cancel">Cancel</a>
     </div>
 </form>
 {% endblock %}

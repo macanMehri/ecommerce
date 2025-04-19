@@ -3,16 +3,18 @@
 {% block title %}Change Email{% endblock %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/change_info.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 <div class="container">
     <h2>Change Email</h2>
 
     <!-- Form for Changing Email -->
-    <form method="post">
+    <form method="post" class="form">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="btn">Save Changes</button>
-        <a href="{% url 'dashboard' %}" class="btn cancel-btn">Cancel</a>
+        <div class="btn">
+            <button>Save Changes</button>
+            <a href="{% url 'dashboard' %}" class="cancel">Cancel</a>
+        </div>
     </form>
 
     {% if form.errors %}

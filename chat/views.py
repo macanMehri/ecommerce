@@ -12,11 +12,16 @@ def chat_page(request):
     if request.user.is_staff:
         return redirect('index')
     sent_messages = Message.objects.filter(is_active=True, sender_user=request.user).order_by('created_date')
-    # TODO: Choose a limit for sending messages
-    if len(sent_messages) > 100:
+    # Check if the user have sent 5 messages in a row, do not let the user send anymore messages
+    unread_messages = 0
+    for message in sent_messages:
+        if not message.is_responded:
+            unread_messages += 1
+            
+    if unread_messages >= 5:
         messages.error(
             request,
-            "You've reached the limitation of sending messages! Please try again later."
+            "You've reached the limitation of sending messages! Please wait till our admins contact you."
         )
         form = UserMessageForm()
     elif request.method == "POST":
@@ -97,7 +102,8 @@ def create_connection(request, user_id):
             return redirect('create_connection', user_id=user_id)
     else:
         form = AdminMessageForm()
-    return render(request, "chat_for_admin.html", {"form": form, "sent_messages": sent_messages})
+    return render(request, "chat_for_admin.html",
+                  {"form": form, "sent_messages": sent_messages, 'username': user.username})
 
 
 @login_required

@@ -15,9 +15,9 @@
                         <i class="bi bi-person-fill"></i> {{ user.username }}
                     </a>
                     {% if user in unseen_users %}
-                        <strong title="new message" style="color:#7a0101;"><i class="bi bi-exclamation-circle-fill"></i></strong>
+                        <strong title="New Message" style="color:#7a0101;"><i class="bi bi-exclamation-circle-fill"></i></strong>
                     {% endif %}
-                    <a title="delete" class="dis" href="{% url 'disconnect' user_id=user.id %}">
+                    <a title="Disconnect" class="dis" href="{% url 'disconnect' user_id=user.id %}">
                         <i class="bi bi-person-x-fill"></i>
                     </a>
                 </div>

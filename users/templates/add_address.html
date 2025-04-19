@@ -3,12 +3,12 @@
 {% block title %}Add Address{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/address.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
 <div class="container">
     <h2>Add Address</h2>
 
-    <form method="post" class="form-container">
+    <form method="post" class="form">
         {% csrf_token %}
 
         <label for="title">Title:</label>
@@ -35,14 +35,16 @@
 
         <!-- Address Details Field -->
         <label for="address_details">Address Details:</label>
-        <textarea id="address_details" name="address_details" placeholder="Enter address details" required></textarea>
+        <textarea style="width:90%;" id="address_details" name="address_details" placeholder="Enter address details" required></textarea>
 
         <!-- Number Field -->
         <label for="number">Number:</label>
         <input type="text" id="number" name="number" placeholder="Enter house/apartment number" required>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn">Add Address</button>
+        <div class="btn">
+            <button type="submit">Add Address</button>
+            <a href="{% url 'dashboard' %}" class="cancel">Cancel</a>
+        </div>
     </form>
 </div>
 

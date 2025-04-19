@@ -1,11 +1,11 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/add_review.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
 <div class="add-review-container">
     <h2>Add Review</h2>
-    <form method="post" class="add-review-form">
+    <form method="post" class="form">
         {% csrf_token %}
 
         <!-- Display Form Errors -->
@@ -45,9 +45,9 @@
         </div>
 
         <!-- Buttons -->
-        <div class="form-buttons">
+        <div class="btn">
             <button type="submit" class="btn-submit">Submit</button>
-            <a href="{% url 'a_product' product_id=product.id %}" class="btn-cancel">Cancel</a>
+            <a href="{% url 'a_product' product_id=product.id %}" class="cancel">Cancel</a>
         </div>
     </form>
 </div>

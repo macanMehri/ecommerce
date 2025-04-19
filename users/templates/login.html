@@ -1,7 +1,7 @@
 {% extends "master.html" %}
 {% load static %}
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/signup_login.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
 <h2>
     Login
@@ -10,7 +10,7 @@
     </svg>
 </h2>
 
-<form method="post" class="form">
+<form method="post" class="form" style="width:200px;">
     {% csrf_token %}
 
     <!-- Display Non-Field Errors -->
@@ -43,9 +43,9 @@
     </div>
 
     <div class="btn">
-        <button type="submit">Login</button>
+        <button class="submit" type="submit">Login</button>
     </div>
-    <a href="{% url 'signup' %}" class="login-link">Don't Have An Account?</a>
+    <a href="{% url 'signup' %}" class="link">Don't Have An Account?</a>
 </form>
 
 {% endblock %}

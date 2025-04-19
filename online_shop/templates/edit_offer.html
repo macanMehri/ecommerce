@@ -3,18 +3,18 @@
 {% block title %}Edit Offer{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="{% static 'css/edit_product.css' %}">
+<link rel="stylesheet" href="{% static 'css/forms.css' %}">
 
 <h2>Edit Offer</h2>
 
-<form method="post" class="edit-product-form">
+<form method="post" class="form">
     {% csrf_token %}
     <div class="form-fields">
         {{ form.as_p }}
     </div>
-    <div class="form-actions">
-        <button type="submit" class="btn btn-submit">Save Changes</button>
-        <a href="{% url 'offers' %}" class="btn btn-cancel">Cancel</a>
+    <div class="btn">
+        <button type="submit">Save Changes</button>
+        <a href="{% url 'offers' %}" class="cancel">Cancel</a>
     </div>
 </form>
 
