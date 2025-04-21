@@ -54,7 +54,7 @@ To run this project, you will need to add the following environment variables to
 
 `ADMIN_PATH = 'Your admin url path'`
 
-## Features
+## Features & Permissions
 
 Customers 
 - Create an account and login.
@@ -73,9 +73,9 @@ Owner
 - Make a user to be staff or remove it.
 - Check and manage reviews and active or deactivate them.
 - Check and manage sent pictures of products and active or deactivate them.
-- Enable to see charts of purchases.
+- Enable to see different charts of purchases. (totally or just for a specific product)
 - Have full permission.
-- Have availability as much as staff.
+- Have availabilities as much as staff.
 
 Staff
 - Add, edit, or delete a product.
@@ -83,6 +83,16 @@ Staff
 - Add, edit, or delete a category.
 - Have a control panel for ease of use.
 - Assign picture to products or delete them.
+- Able to answer users sent messages.
+
+Website
+- Connect a user to an admin.
+- Calculate the total spent money in this website in the current year.
+- Calculate the number of products that has been bought in this website in the current year.
+- Unable users to send multiple messages in a row.
+- Unable users to send multiple pictures for a product.
+- Unable users to add multiple reviews for a product.
+
 ## Tech Stack
 
 **Client:** HTML, CSS, JS
@@ -97,10 +107,10 @@ We are looking to add new options to this website.
 
 ## Screenshots
 
-![Screenshot (8)](https://github.com/user-attachments/assets/a228264c-18f1-492c-bd25-a2a191ac331a)
-
-![Screenshot (9)](https://github.com/user-attachments/assets/dd657ee7-8473-4654-98b0-63224e0f032d)
+![Image](https://github.com/user-attachments/assets/99ffbdab-3197-408c-97de-c8676e245c25)
+![Image](https://github.com/user-attachments/assets/d4601e33-d849-4e99-a4df-c96218a8ed57)
+![Image](https://github.com/user-attachments/assets/e10443a3-e2de-496d-800e-688056810b63)
 
 ## DEMO
 
-![Demo video](https://github.com/user-attachments/assets/b929b78d-e6c5-40eb-90ff-0fb73a7a78e5)
+Coming Soon...
