@@ -1,10 +1,9 @@
-/* General styling */
-.container {
 
+.container {
     max-width: 800px;
-    margin: 40px auto;
+    margin: 20px auto;
     padding: 20px;
-    background-color: #f8f9fa;
+    background-color: white;
     border-radius: 8px;
 }
 
@@ -14,26 +13,33 @@ h3 {
     margin-bottom: 20px;
 }
 
-/* User list container */
 .users {
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.dis {
-    direction: rtl;
+.controls {
+    display: flex;
+    align-items: rtl;
+    font-size: 16px;
+}
+
+.controls strong {
+    font-size: 16px;
+    color:#7a0101;
+}
+
+.controls .dis {
     margin-left: 10px;
     color: #7a0101;
     text-decoration: none;
-    font-size: 20px;
 }
 
-.dis:hover {
-    direction: rtl;
-    margin-left: 10px;
+.controls .dis:hover {
     color: #420101;
 }
+
 
 .users_box {
     display: flex;
@@ -52,7 +58,6 @@ h3 {
 
 .name {
     text-decoration: none;
-    font-weight: 500;
     color: #007bff;
     font-size: 16px;
     margin-right: 100px;

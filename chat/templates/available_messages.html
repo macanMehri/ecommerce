@@ -14,18 +14,28 @@
                     <a class="name" href="{% url 'create_connection' user_id=user.id %}">
                         <i class="bi bi-person-fill"></i> {{ user.username }}
                     </a>
+                    <div class="controls">
                     {% if user in unseen_users %}
-                        <strong title="New Message" style="color:#7a0101;"><i class="bi bi-exclamation-circle-fill"></i></strong>
+                        <strong title="New Message"><i class="bi bi-exclamation-circle-fill"></i></strong>
                     {% endif %}
                     <a title="Disconnect" class="dis" href="{% url 'disconnect' user_id=user.id %}">
                         <i class="bi bi-person-x-fill"></i>
                     </a>
+                    </div>
                 </div>
             {% empty %}
                 <p>No messages yet.</p>
             {% endfor %}
         </div>
-    </div>
-{% endblock %}
 
+    </div>
+        {% if messages %}
+            <br>
+            {% for message in messages %}
+            <div class="error-message" style="color:red; font-size:16px;">
+                {{ message }}
+            </div>
+            {% endfor %}
+        {% endif %}
+{% endblock %}
 

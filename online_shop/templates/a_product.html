@@ -40,7 +40,12 @@
             <p><strong>Insurance:</strong> {{ product.insurance }}</p>
             <p><strong>Rating:</strong> {{ product.rate|floatformat:2 }} / 5</p>
             <p><strong>Number Of Reviews:</strong> {{ number_of_reviews }}</p>
-            <p><strong>Description:</strong> {{ product.description }}</p>
+            <p><strong>Description:</strong> {{ product.description }}</p><br>
+            {% if user.is_superuser %}
+                <a href="{% url 'total_purchase_product' product_id=product.id %}" title="View Chart">
+                    <img src="{% static 'images/statistics.png' %}" alt="logo" style="width: 30px; height: 30px;">
+                </a>
+            {% endif %}
         </div>
     </div>
 

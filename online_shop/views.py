@@ -326,6 +326,14 @@ def decrement_purchase(request, purchase_id):
 @login_required
 def add_review_view(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+    # Users should not be able to send multiple reviews for a product
+    previous_reviews = um.UsersReview.objects.filter(user=request.user, product=product, is_active=True)
+    if previous_reviews:
+        messages.error(
+            request,
+            message="You've already added a review for the product!"
+        )
+        return redirect('a_product', product_id=product_id)
     if request.method == 'POST':
         form = UsersReviewForm(request.POST, product)
         if form.is_valid():

@@ -77,7 +77,14 @@ def create_connection(request, user_id):
         connection.save()
 
     sent_messages = Message.objects.filter(is_active=True, sender_user=user).order_by('created_date')
-    last_message = sent_messages[len(sent_messages)-1]
+    if sent_messages:
+        last_message = sent_messages[len(sent_messages)-1]
+    else:
+        messages.error(
+            request,
+            message="There are no messages between you and the user!"
+        )
+        return redirect('messages_received')
     # The condition that admin wants to send two or more messages in a row
     if last_message.is_responded and request.method == 'POST':
         form = AdminMessageForm(request.POST)
@@ -110,9 +117,18 @@ def create_connection(request, user_id):
 def disconnect(request, user_id):
     if request.user.is_staff:
         user = get_object_or_404(User, id=user_id)
-        connection = get_object_or_404(Connection, admin=request.user, user=user)
+        connection = get_object_or_404(Connection, user=user)
+        if not connection.admin:
+            messages.error(
+                request,
+                message="There are no connections between you and the user!"
+            )
+            return redirect('messages_received')
+
         if request.method == 'POST':
-            connection.delete()
+            connection.admin = None
+            connection.is_active = False
+            connection.save()
             return redirect('messages_received')
         return render(request, 'disconnect.html', {'connection': connection})
 
