@@ -4,41 +4,175 @@
   Home - E-commerce
 {% endblock %}
 
-
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<section class="hero">
-    <div class="hero-content">
-        {% if user.is_authenticated %}
-            <h2>Welcome to E-commerce {{ user.username }}</h2>
-        {% else %}
-            <h2>Welcome to E-commerce</h2>
-        {% endif %}
-        <p>Find the best deals on your favorite products!</p>
-        <div class="categories-container">
-            {% for category in categories %}
+<link rel="stylesheet" href="{% static 'css/categories.css' %}">
 
-                <div class="category-item">
-                    <a href="{% url 'products' category_id=category.id %}" class="category-link">
-                        <div class="image-container">
-                            <img src="{{ category.image.url }}" alt="{{ category.title }}" width="400px" height="250px">
-                            <div class="overlay">
-                                <h3>{{ category.title }}</h3>
-                            </div>
+<div class="main">
+<div class="info">
+At <b><i>e-commerce</i></b>, we believe shopping should be easy, safe, and full of little joys.<br>
+When you choose online payment, you get instant confirmation, faster delivery, and the peace of mind that your order is on its way — safely and securely.
+<br>
+We protect your information with the highest security standards, because you deserve to shop with total confidence.<br>
+Plus, when you pay online, you unlock special deals, early offers, and a smoother experience every time.
+<br>
+Make your shopping even more magical — choose online payment and let us take care of the rest.<br>
+Thank you for trusting us! We can’t wait to serve you.</div>
+<div class="section-one">
+<h2 align="center">What are new here?</h2>
+<div class="slideshow-container">
+
+<div class="mySlides fade">
+    <a href="{% url 'a_product' product_id=new_product1.id %}">
+        {% if new_product1.productpicture_set.exists %}
+        {% with new_product1.productpicture_set.first as first_picture %}
+        <img src="{{ first_picture.image.url }}" alt="{{ new_product1.title }}">
+        {% endwith %}
+        {% else %}
+        <img src="{{ new_product1.category.image.url }}" alt="{{ new_product1.category.name }}">
+        {% endif %}
+    </a>
+  <div class="text">{{ new_product1.title }}</div>
+</div>
+
+<div class="mySlides fade">
+    <a href="{% url 'a_product' product_id=new_product2.id %}">
+        {% if new_product2.productpicture_set.exists %}
+        {% with new_product2.productpicture_set.first as first_picture %}
+        <img src="{{ first_picture.image.url }}" alt="{{ new_product2.title }}">
+        {% endwith %}
+        {% else %}
+        <img src="{{ new_product2.category.image.url }}" alt="{{ new_product2.category.name }}">
+        {% endif %}
+    </a>
+  <div class="text">{{ new_product2.title }}</div>
+</div>
+
+<div class="mySlides fade">
+    <a href="{% url 'a_product' product_id=new_product3.id %}">
+        {% if new_product3.productpicture_set.exists %}
+        {% with new_product3.productpicture_set.first as first_picture %}
+        <img src="{{ first_picture.image.url }}" alt="{{ new_product3.title }}">
+        {% endwith %}
+        {% else %}
+        <img src="{{ new_product3.category.image.url }}" alt="{{ new_product3.category.name }}">
+        {% endif %}
+    </a>
+  <div class="text">{{ new_product3.title }}</div>
+</div>
+<div class="mySlides fade">
+    <a href="{% url 'a_product' product_id=new_product4.id %}">
+        {% if new_product4.productpicture_set.exists %}
+        {% with new_product4.productpicture_set.first as first_picture %}
+        <img src="{{ first_picture.image.url }}" alt="{{ new_product4.title }}">
+        {% endwith %}
+        {% else %}
+        <img src="{{ new_product4.category.image.url }}" alt="{{ new_product4.category.name }}">
+        {% endif %}
+    </a>
+  <div class="text">{{ new_product4.title }}</div>
+</div>
+<div class="mySlides fade">
+    <a href="{% url 'a_product' product_id=new_product5.id %}">
+        {% if new_product5.productpicture_set.exists %}
+        {% with new_product5.productpicture_set.first as first_picture %}
+        <img src="{{ first_picture.image.url }}" alt="{{ new_product5.title }}">
+        {% endwith %}
+        {% else %}
+        <img src="{{ new_product5.category.image.url }}" alt="{{ new_product5.category.name }}">
+        {% endif %}
+    </a>
+  <div class="text">{{ new_product5.title }}</div>
+</div>
+<a class="prev" onclick="plusSlides(-1)">❮</a>
+<a class="next" onclick="plusSlides(1)">❯</a>
+
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span>
+  <span class="dot" onclick="currentSlide(2)"></span>
+  <span class="dot" onclick="currentSlide(3)"></span>
+  <span class="dot" onclick="currentSlide(4)"></span>
+  <span class="dot" onclick="currentSlide(5)"></span>
+</div>
+</div>
+</div>
+<div class="offer-section">
+    <h2 style="margin-top: 80px; border-top: 1px solid black; border-bottom: 1px solid black;" align="center">Have You Heard About Offers?</h2>
+    <div class="offered_images_container">
+        {% for offered_product in offered_products %}
+            <a href="{% url 'a_product' product_id=offered_product.id %}" class="image-wrapper">
+                    {% if offered_product.productpicture_set.exists %}
+                        {% with offered_product.productpicture_set.first as first_picture %}
+                            <img src="{{ first_picture.image.url }}" alt="{{ offered_product.title }}" width="700px" height="450px">
+                        {% endwith %}
+                    {% else %}
+                        <img src="{{ offered_product.category.image.url }}" alt="{{ offered_product.category.name }}" width="700px" height="450px"">
+                    {% endif %}
+                    <div class="image-note">
+                        {{ offered_product }}
+                        <br><br>
+                        {{ offered_product.discount }}
+                    </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+<h2 style="margin-top: 80px; border-top: 1px solid black; border-bottom: 1px solid black;" align="center">What About The Most Popular Products?</h2>
+<section class="popular-products-container">
+    <div class="popular-products-container">
+        {% for popular_product in popular_products %}
+            <div class="popular-product-item">
+                <a href="{% url 'a_product' product_id=popular_product.id %}" class="category-link">
+                    <div class="image-container">
+                        {% if popular_product.productpicture_set.exists %}
+                        {% with popular_product.productpicture_set.first as first_picture %}
+                            <img src="{{ first_picture.image.url }}" alt="{{ popular_product.title }}">
+                        {% endwith %}
+                    {% else %}
+                        <img src="{{ popular_product.category.image.url }}" alt="{{ popular_product.category.name }}">
+                    {% endif %}
+
+                        <div class="overlay">
+                            <h3>{{ popular_product.title }}</h3>
                         </div>
-                    </a>
-                </div>
-            {% empty %}
-                <p>No categories available.</p>
-            {% endfor %}
-        </div>
-        <br><br><br>
-        <a href="{% url 'all_products' %}" class="btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart2" viewBox="0 0 16 16">
-              <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5M3.14 5l1.25 5h8.22l1.25-5zM5 13a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0m9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2m-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0"/>
-            </svg>
-            Shop Now
-        </a>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
     </div>
 </section>
+<div class="shop-link">
+<a href="{% url 'all_products' %}">Wanna See More...</a>
+</div>
+<script>
+let slideIndex = 1;
+showSlides(slideIndex);
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
 {% endblock %}

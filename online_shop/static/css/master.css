@@ -40,10 +40,11 @@ header nav {
 header nav a {
     color: white;
     text-decoration: none;
+    transition: transform 0.3s ease;
 }
 
-header a:hover {
-    font-weight: bold;
+header nav a:hover {
+    transform: scale(1.5);
 }
 
 .container {
@@ -60,12 +61,13 @@ header a:hover {
     justify-content: center;
 }
 .go-top a {
+    transition: transform 0.3s ease;
     color: #b8b8b8;
 }
 
 .go-top a:hover {
     color: black;
-    transform: scale(1.15);
+    transform: scale(1.3);
 }
 
 .prenav {
@@ -107,12 +109,11 @@ header a:hover {
 }
 
 footer {
-    background-color: white;
-    color: black;
+    background-color: #4F4A45;
+    color: white;
     text-align: center;
     padding: 10px 0;
     width: 100%;
     height: 50px;
-    border-top: 2px solid  #a8a8a8;
 }
 

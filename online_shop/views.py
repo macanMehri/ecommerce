@@ -12,7 +12,20 @@ from django.contrib import messages
 
 def index_view(request):
     categories = Category.objects.filter(is_active=True)[:6]
-    return render(request, 'index.html', {'categories': categories})
+    new_products = Product.objects.filter(is_active=True).order_by('-created_date')[:5]
+    offered_products = Product.objects.filter(is_active=True, discount__percentage__gt=0).order_by('-updated_date')[:10]
+    popular_products = Product.objects.filter(is_active=True).order_by('-popularity')[:8]
+
+    context = {
+        'new_product1': new_products[0],
+        'new_product2': new_products[1],
+        'new_product3': new_products[2],
+        'new_product4': new_products[3],
+        'new_product5': new_products[4],
+        'offered_products': offered_products,
+        'popular_products': popular_products
+    }
+    return render(request, 'index.html', context=context)
 
 
 def all_products(request):
