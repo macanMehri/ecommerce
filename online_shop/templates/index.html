@@ -6,7 +6,6 @@
 
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/style.css' %}">
-<link rel="stylesheet" href="{% static 'css/categories.css' %}">
 
 <div class="main">
 <div class="info">
@@ -114,7 +113,7 @@ Thank you for trusting us! We can’t wait to serve you.</div>
                     <div class="image-note">
                         {{ offered_product }}
                         <br><br>
-                        {{ offered_product.discount }}
+                        <span style="color: #e65a5a">{{ offered_product.discount }}</span>
                     </div>
             </a>
         {% endfor %}
@@ -145,7 +144,7 @@ Thank you for trusting us! We can’t wait to serve you.</div>
     </div>
 </section>
 <div class="shop-link">
-<a href="{% url 'all_products' %}">Wanna See More...</a>
+<a href="{% url 'all_products' %}">See More...</a>
 </div>
 <script>
 let slideIndex = 1;

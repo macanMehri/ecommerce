@@ -107,6 +107,7 @@
 }
 /* for offered images */
 .offered_images_container {
+    margin-top: 30px;
     overflow-x: auto;
     white-space: nowrap;
     padding: 10px 0;
@@ -157,15 +158,16 @@
 }
 /* for popular products */
 .popular-products-container {
+    margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 40px;
     justify-content: center;
 }
 
 .popular-product-item {
     position: relative;
-    width: 300px;
+    width: 250px;
     text-align: center;
 }
 
@@ -175,7 +177,6 @@
     height: 150px;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     margin-bottom: 15px;
 }
 
@@ -229,5 +230,5 @@
 }
 
 .shop-link a:hover {
-    transform: scale(1.1);
+    transform: scale(1.3);
 }
